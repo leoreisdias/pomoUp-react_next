@@ -5,6 +5,7 @@ import React from 'react';
 import Profile from '../components/Profile';
 
 import styles from '../styles/pages/Home.module.css';
+import CompletedChallenges from '../components/CompletedChallenges';
 
 export default function Home() {
   // const defaultOptions = {
@@ -23,6 +24,7 @@ export default function Home() {
       <section>
         <div>
           <Profile />
+          <CompletedChallenges />
         </div>
         <div>
 
