@@ -4,9 +4,12 @@ import animationData from '../lotties/laptop-working.json';
 import React from 'react';
 import Profile from '../components/Profile';
 
-import styles from '../styles/pages/Home.module.css';
 import CompletedChallenges from '../components/CompletedChallenges';
 import Countdown from '../components/Countdown';
+
+import Head from 'next/head';
+
+import styles from '../styles/pages/Home.module.css';
 
 export default function Home() {
   // const defaultOptions = {
@@ -20,6 +23,9 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
+      <Head>
+        <title>Inicio | Pomo Up</title>
+      </Head>
       <ExperienceBar />
 
       <section>
