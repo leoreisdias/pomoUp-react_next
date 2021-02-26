@@ -76,4 +76,14 @@
     background: var(--white);
     color: var(--text);
     cursor: not-allowed;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-bottom: 2px solid var(--green);
+}
+
+.countdownButton:disabled:hover{
+    border-bottom-color: var(--red);
 }

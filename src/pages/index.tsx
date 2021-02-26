@@ -1,6 +1,5 @@
 import ExperienceBar from '../components/ExperienceBar';
-import Lottie from 'react-lottie';
-import animationData from '../lotties/laptop-working.json';
+
 import React from 'react';
 import Profile from '../components/Profile';
 
