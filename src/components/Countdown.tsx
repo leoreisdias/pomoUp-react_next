@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import Lottie from 'react-lottie';
+import React, { useContext, useEffect, useState } from 'react';
+import { ChallengesContext } from '../contexts/ChallengesContext';
+import Lottie from 'react-lottie-player';
 import completed from '../lotties/completed.json';
-import lottieOption from '../lotties/defaultOptions';
 
 import styles from '../styles/components/Countdown.module.css';
 
 let countdownTimeout: NodeJS.Timeout;
 
 const Countdown: React.FC = () => {
+    const { startNewChallenge } = useContext(ChallengesContext);
+
+
     const [time, setTime] = useState(0.05 * 60);
     const [isActive, setIsActive] = useState(false);
     const [hasFinished, setHasFinished] = useState(false);
@@ -37,11 +40,10 @@ const Countdown: React.FC = () => {
         } else if (isActive && time === 0) {
             setHasFinished(true);
             setIsActive(false);
-
+            startNewChallenge();
         }
     }, [isActive, time])
 
-    const lottieOptionsAnimation = lottieOption(completed);
 
     return (
         <div>
@@ -65,10 +67,10 @@ const Countdown: React.FC = () => {
                     Ciclo Encerrado
                     <span>
                         <Lottie
-                            options={lottieOptionsAnimation}
-                            height={100}
-                            width={100}
-                            speed={0.5}
+                            loop={true}
+                            animationData={completed}
+                            play={true}
+                            style={{ width: 100, height: 100 }}
                         />
                     </span>
                 </button>

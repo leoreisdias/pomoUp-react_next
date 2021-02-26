@@ -1,25 +1,17 @@
-import ExperienceBar from '../components/ExperienceBar';
-
 import React from 'react';
-import Profile from '../components/Profile';
-
-import CompletedChallenges from '../components/CompletedChallenges';
-import Countdown from '../components/Countdown';
-
 import Head from 'next/head';
+
+import Profile from '../components/Profile';
+import Countdown from '../components/Countdown';
+import ExperienceBar from '../components/ExperienceBar';
+import CompletedChallenges from '../components/CompletedChallenges';
+import ChallengeBox from '../components/ChallengeBox';
+
 
 import styles from '../styles/pages/Home.module.css';
 
-export default function Home() {
-  // const defaultOptions = {
-  //   loop: true,
-  //   autoplay: true,
-  //   animationData: animationData,
-  //   rendererSettings: {
-  //     preserveAspectRatio: "xMidYMid slice"
-  //   }
-  // };
 
+export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
@@ -34,7 +26,7 @@ export default function Home() {
           <Countdown />
         </div>
         <div>
-
+          <ChallengeBox />
         </div>
       </section>
     </div>
