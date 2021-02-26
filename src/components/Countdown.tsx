@@ -52,23 +52,36 @@ const Countdown: React.FC = () => {
                 </div>
             </div>
 
-            {isActive ? (
+            { hasFinished ? (
                 <button
-                    type="button"
-                    className={`${styles.countdownButton} ${styles.countdownButtonActive}`}
-                    onClick={resetCountdown}
+                    disabled
+                    className={styles.countdownButton}
                 >
-                    Abandonar Ciclo
+                    Ciclo Encerrado
                 </button>
             ) : (
-                    <button
-                        type="button"
-                        className={styles.countdownButton}
-                        onClick={startCountdown}
-                    >
-                        Iniciar um Ciclo
-                    </button>
+                    <>
+                        {isActive ? (
+                            <button
+                                type="button"
+                                className={`${styles.countdownButton} ${styles.countdownButtonActive}`}
+                                onClick={resetCountdown}
+                            >
+                                Abandonar Ciclo
+                            </button>
+                        ) : (
+                                <button
+                                    type="button"
+                                    className={styles.countdownButton}
+                                    onClick={startCountdown}
+                                >
+                                    Iniciar um Ciclo
+                                </button>
+                            )}
+                    </>
                 )}
+
+
         </div>
     );
 }
