@@ -67,7 +67,7 @@ const Countdown: React.FC = () => {
                     Ciclo Encerrado
                     <span>
                         <Lottie
-                            loop={true}
+                            loop={false}
                             animationData={completed}
                             play={true}
                             style={{ width: 100, height: 100 }}
