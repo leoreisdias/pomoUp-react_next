@@ -8,6 +8,7 @@
     flex-direction: column;
 }
 
+
 .container section{
     flex: 1;
     
@@ -18,3 +19,9 @@
     align-content: center;
 }
 
+
+@media(max-width: 720px){
+    .container section{
+        grid-template-columns: 1fr;
+    }
+}

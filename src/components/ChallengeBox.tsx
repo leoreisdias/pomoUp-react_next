@@ -8,26 +8,26 @@ import levelUp from '../lotties/level-up.json';
 import { ChallengesContext } from '../contexts/ChallengesContext';
 
 const ChallengeBox: React.FC = () => {
-    const contextData = useContext(ChallengesContext);
+    const { activeChallenge, resetChallenge } = useContext(ChallengesContext);
 
-    const hasActiveChallenge = true;
 
     return (
         <div className={styles.challengeBoxContainer}>
-            { !hasActiveChallenge ? (
+            { activeChallenge ? (
                 <div className={styles.challengeActive}>
-                    <header>Ganhe 400 xp</header>
+                    <header>Ganhe {activeChallenge.amount} xp</header>
 
                     <main>
-                        <img src="icons/body.svg" alt="Corpo Desafio" />
+                        <img src={`icons/${activeChallenge.type}.svg`} alt="Corpo Desafio" />
                         <strong>Novo Desafio!</strong>
-                        <p>Arrume uma corda e pule como coelho durante 1 minuto</p>
+                        <p>{activeChallenge.description}</p>
                     </main>
 
                     <footer>
                         <button
                             type="button"
                             className={styles.challengeFailedButton}
+                            onClick={resetChallenge}
                         >
                             Falhei</button>
                         <button
@@ -39,22 +39,23 @@ const ChallengeBox: React.FC = () => {
 
                 </div>
             ) : (
-                    <div className={styles.challengeNotActive}>
-                        <strong>Finalize um ciclo para receber um desafio</strong>
-                        <p>
-                            <span>
-                                <Lottie
-                                    loop={true}
-                                    animationData={levelUp}
-                                    play={true}
-                                    style={{ width: 100, height: 100 }}
-                                    speed={1}
-                                />
-                            </span>
-                            Avance de Level Completando Desafios
-                        </p>
-                    </div>
-                )}
+                <div className={styles.challengeNotActive}>
+                    <strong>Finalize um ciclo para receber um desafio</strong>
+                    <span>
+                        <Lottie
+                            loop={false}
+                            animationData={levelUp}
+                            play={true}
+                            style={{ width: 200, height: 200 }}
+                            speed={0.5}
+                        />
+                    </span>
+                    <p>
+                        Avance de Level Completando Desafios
+
+                    </p>
+                </div>
+            )}
         </div>
     );
 }
