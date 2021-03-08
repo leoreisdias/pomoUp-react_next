@@ -1,4 +1,4 @@
-<h1 align="center">#Next Level Week (NLW#4), fourth edition. This project was called "Move.it". But I call it "Pomo Up"</h1>
+<h1 align="center">Next Level Week (NLW#4) - "Pomo Up"</h1>
 
 **Move.it** or **Pomo Up**, is an open source project developed during Next Level Week # 4 from the [Rocketseat](https://github.com/rocketseat) class, by the Rocketseat CTO, [Diego Fernandes](https://github.com/diego3g).
 
