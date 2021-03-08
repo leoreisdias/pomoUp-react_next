@@ -6,10 +6,21 @@ import styles from '../styles/components/ChallengeBox.module.css';
 import levelUp from '../lotties/level-up.json';
 
 import { ChallengesContext } from '../contexts/ChallengesContext';
+import { CountdownContext } from '../contexts/CountdownContext';
 
 const ChallengeBox: React.FC = () => {
-    const { activeChallenge, resetChallenge } = useContext(ChallengesContext);
+    const { activeChallenge, resetChallenge, completeChallenge, hasLevelledUp } = useContext(ChallengesContext);
+    const { resetCountdown } = useContext(CountdownContext)
 
+    function handleChallengeSucceeded() {
+        completeChallenge();
+        resetCountdown();
+    }
+
+    function handleChallengeFailed() {
+        resetChallenge();
+        resetCountdown();
+    }
 
     return (
         <div className={styles.challengeBoxContainer}>
@@ -27,12 +38,13 @@ const ChallengeBox: React.FC = () => {
                         <button
                             type="button"
                             className={styles.challengeFailedButton}
-                            onClick={resetChallenge}
+                            onClick={handleChallengeFailed}
                         >
                             Falhei</button>
                         <button
                             type="button"
                             className={styles.challengeSucceededButton}
+                            onClick={handleChallengeSucceeded}
                         >
                             Completei</button>
                     </footer>
@@ -48,6 +60,7 @@ const ChallengeBox: React.FC = () => {
                             play={true}
                             style={{ width: 200, height: 200 }}
                             speed={0.5}
+                            segments={!hasLevelledUp && [90, 100]}
                         />
                     </span>
                     <p>
