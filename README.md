@@ -6,8 +6,8 @@
 `Visit My LogBook for the full documentation about these and others technolgies I have been learning`
 
 ---
-<img src="https://github.com/leoreisdias/pomoUp-react_next/blob/master/public/screenshot_4.png" width="200px"  alt="Screenshot 4" />
 <div>
+<img src="https://github.com/leoreisdias/pomoUp-react_next/blob/master/public/screenshot_4.png" width="200px"  alt="Screenshot 4" />
 <img src="https://github.com/leoreisdias/pomoUp-react_next/blob/master/public/screenshot_3.png" width="300px" height="225px" alt="Screenshot 3" />
 <img src="https://github.com/leoreisdias/pomoUp-react_next/blob/master/public/screenshot_1.png" width="300px" height="225px" alt="Screenshot 1" />
 <img src="https://github.com/leoreisdias/pomoUp-react_next/blob/master/public/screenshot_2.png" width="300px" height="225px" alt="Screenshot 2" />
