@@ -9,7 +9,7 @@ import { ChallengesContext } from '../contexts/ChallengesContext';
 import { CountdownContext } from '../contexts/CountdownContext';
 
 const ChallengeBox: React.FC = () => {
-    const { activeChallenge, resetChallenge, completeChallenge, hasLevelledUp } = useContext(ChallengesContext);
+    const { activeChallenge, resetChallenge, completeChallenge } = useContext(ChallengesContext);
     const { resetCountdown } = useContext(CountdownContext)
 
     function handleChallengeSucceeded() {
@@ -60,7 +60,7 @@ const ChallengeBox: React.FC = () => {
                             play={true}
                             style={{ width: 200, height: 200 }}
                             speed={0.5}
-                            segments={!hasLevelledUp && [90, 100]}
+                            segments={[20, 100]}
                         />
                     </span>
                     <p>
