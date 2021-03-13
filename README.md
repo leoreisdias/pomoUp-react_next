@@ -2,7 +2,17 @@
 
 **Move.it** or **Pomo Up**, is an open source project developed during Next Level Week # 4 from the [Rocketseat](https://github.com/rocketseat) class, by the Rocketseat CTO, [Diego Fernandes](https://github.com/diego3g).
 
-[Visit My LogBook for the full documentation about these and others technolgies I have been learning](https://www.notion.so/Development-7e867a3173424b5f8bb9d93f99659e39)
+---
+
+🚀🚀[Visit My LogBook for the full documentation about these and others technolgies I have been learning](https://www.notion.so/Development-7e867a3173424b5f8bb9d93f99659e39)
+
+---
+<img src="https://github.com/leoreisdias/pomoUp-react_next/blob/master/public/screenshot_4.png" width="200px"  alt="Screenshot 4" />
+<div>
+<img src="https://github.com/leoreisdias/pomoUp-react_next/blob/master/public/screenshot_3.png" width="300px" height="225px" alt="Screenshot 3" />
+<img src="https://github.com/leoreisdias/pomoUp-react_next/blob/master/public/screenshot_1.png" width="300px" height="225px" alt="Screenshot 1" />
+<img src="https://github.com/leoreisdias/pomoUp-react_next/blob/master/public/screenshot_2.png" width="300px" height="225px" alt="Screenshot 2" />
+</div>
 
 ---
 ## 🚀 Technologies Incluided in this project
@@ -22,7 +32,7 @@
 ---
 
 ---
-## Getting Started
+## Test this application in your machine
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
@@ -54,7 +64,7 @@ yarn dev
 
 Após fazer todos os passos anteriores, basta na pasta do Projeto executar o comando:
 
-- `**vercel**`
+- `vercel`
 
 ---
 
@@ -334,300 +344,6 @@ return (
 
 ---
 
-# Context Authentification
-
-Com o **Context Authentification** podemos contextualizar o método de **Login** e **Loggout**, as **varíaveis que determinam alguem autentificado** e o **header** da aplicação com o **Token** para ser enviado ao Backend.
-
-## AuthContext
-
-Na pasta de **contexts** iremos declarar um arquivo **authContext.tsx**, nele inicialmente o retorno do **Component** criado, que chamamos de **AuthProvider,** ficando da seguinte forma:
-
-```tsx
-const Context = useContext();
-
-function AuthProvider({children}){
-	return (
-			<Context.Provider value={{}}>
-				{children}
-			</Context.Provider>
-	)
-}
-```
-
-Para utilizar de **Context** devemos usar do `useContext()` e também trazer o `children` que irá representar o resto da aplicação que ficará dentro desse **contexto.**
-
-Ir para o topo para melhores detalhes da estruturação e uso de **Contextos**.
-
----
-
-### Lidando com Login
-
-Nesse **AuthContext** iremos criar o **state** que definirá se um usuário está ou não autentificado, como exemplo usaremos uma varíavel `authenticated` como valor **FALSE** como padrão. Logo em seguida criamos a função de Login como `handleLogin()`, a qual realizará a requisição ao nosso **Backend** levando as informações do usuário, esse retornará como resposta um **Token** e qualquer outra informação configurada pelo **Backend** desde que as informações enviadas existam na **Base de Dados**. Logo em seguida faço o seguinte:
-
-1. Coloco o **Token** recebido dentro do **LocalStorage** ou **Cookie** ou **Session** dependendo da aplicação.
-2. Como utilizo **axios** para conexões de **API's** configuro seu **defaults.headers** com um **Authentication** recebendo o **Token** de retorno para que esse seja enviado em toda requisição daqui em diante para o **Backend** fazer suas verificações de **middleware**.
-3. Mudo o **state** da variável `authenticated` para **TRUE**.
-4. Redireciono o usuário para o resto da aplicação.
-
-Caso o **Token** não seja retornado da **API** devemos então informar que os dados foram incorretos ou qualquer outro tipo de decisão para **Login** **mal sucedido**.
-
-Lembrar de concatenar a palavra **Bearer** no **Token** ao vinculá-lo no **defaults.headers**
-
-```tsx
-const [authenticated, setAuthenticated] = useState(false);
-const [loading, setLoading] = useState(true);
-
-async function handleLogin() {
-    const { data: { token } } = await api.post('/authenticate');
-
-    localStorage.setItem('token', JSON.stringify(token));
-    api.defaults.headers.Authorization = `Bearer ${token}`;
-    setAuthenticated(true);
-    history.push('/users');
-}
-```
-
-Dessa forma, adicionaremos a função de Login `handleLogin` e a variável `authenticated` para o nosso **value** do **Contexto** que será compartilhado com todo resto da aplicação.
-
-```tsx
-return (
-    <Context.Provider value={{ authenticated, handleLogin}}>
-      {children}
-    </Context.Provider>
-  );
-```
-
----
-
-### Lidando com Logout
-
-Do mesmo modo do Login, iremos criar uma função para sair da aplicação, que no exemplo é chamada de `handleLogout` que agirá da seguinte maneira:
-
-1. Mudo o **state** da varíavel `authenticated` para **FALSE.**
-2. Removo o **Token** do **LocalStorage**
-3. Defino como **undefined** o **defaults.headers Authorization** para não passar em futuras requisições.
-4. Redireciona o usuário para a tela de Login
-
-```tsx
-  function handleLogout() {
-    setAuthenticated(false);
-    localStorage.removeItem('token');
-    api.defaults.headers.Authorization = undefined;
-    history.push('/login');
-  }
-```
-
-E assim adicionamos mais uma função ao **Contexto** da aplicação, sendo ela a `handleLogout`.
-
-```tsx
- return (
-    <Context.Provider value={{ authenticated, handleLogin, handleLogout }}>
-      {children}
-    </Context.Provider>
-  );
-```
-
----
-
-### Manter o Login Ativo [Web]
-
-A não ser que o usuário saia da aplicação pelo **Logout**, não iremos querer que ele perca o acesso toda vez que fechar o navegador ou aplicativo, sendo assim iremos por meio do **useEffect** garantir que toda vez que a aplicação for carregada, busque antes no **LocalStorage** se existe um **Token** salvo, todo processo será feito assim:
-
-1. Dentro de um **useEffect** para executar ao entrar na aplicação
-2. Buscar o **Token** no **LocalStorage**
-3. **Se existir:** 
-    1. Definiremos ele no **defaults.headers Authorization**
-    2. Mudo o **state** da `authenticated` para **TRUE**
-
-Como o processo de busca na **LocalStorage** pode demorar, para evitar que a tela de Login seja aberta mesmo que muito rapidamente, coloco um **state** **loading** para determinar se está em carregamento a busca da autentificação, usando esse **loading** como **TRUE** posso colocar uma tela de espera até que tudo seja verificado, adicionando também a variável no **Contexto** da aplicação.
-
-Lembrar de concatenar a palavra **Bearer** no **Token** ao vinculá-lo no **defaults.headers**
-
-```tsx
- return (
-    <Context.Provider value={{ loading, authenticated, handleLogin, handleLogout }}>
-      {children}
-    </Context.Provider>
-  );
-}
-```
-
-- **Exemplo Completo**
-
-    ```tsx
-    import React, { createContext, useState, useEffect } from 'react';
-
-    import useAuth from './hooks/useAuth';
-    import { useState, useEffect } from 'react';
-
-    import api from '../../api';
-    import history from '../../history';
-
-    const Context = createContext();
-
-    function AuthProvider({ children }) {
-      const [authenticated, setAuthenticated] = useState(false);
-      const [loading, setLoading] = useState(true);
-
-      useEffect(() => {
-        const token = localStorage.getItem('token');
-
-        if (token) {
-          api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
-          setAuthenticated(true);
-        }
-
-        setLoading(false);
-      }, []);
-      
-      async function handleLogin() {
-        const { data: { token } } = await api.post('/authenticate');
-
-        localStorage.setItem('token', JSON.stringify(token));
-        api.defaults.headers.Authorization = `Bearer ${token}`;
-        setAuthenticated(true);
-        history.push('/users');
-      }
-
-      function handleLogout() {
-        setAuthenticated(false);
-        localStorage.removeItem('token');
-        api.defaults.headers.Authorization = undefined;
-        history.push('/login');
-      }
-
-      return (
-        <Context.Provider value={{ loading, authenticated, handleLogin, handleLogout }}>
-          {children}
-        </Context.Provider>
-      );
-    }
-
-    export { Context, AuthProvider };
-    ```
-
-### Separando a lógica em Hooks
-
-Para melhor organização e arquitetura de código, separo toda lógica do **Contexto** criado dentro de uma **Hook** denominada **useAuth.tsx.**
-
-Para isso dentro da pasta **contexts** crio uma outra pasta de **hooks**, onde ficará o **useAuth.tsx**.
-
-Dentro dele teremos os **imports** e toda lógica programada para o **Contexto** desde a criação das variáveis **state** até as funções criadas, retornando elas dentro de um objeto para ser acessado pela nossa **AuthContext.tsx**
-
-Ficando da seguinte maneira:
-
-**useAuth.tsx**
-
-```tsx
-import { useState, useEffect } from 'react';
-
-import api from '../../api';
-import history from '../../history';
-
-export default function useAuth() {
-  const [authenticated, setAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-
-    if (token) {
-      api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
-      setAuthenticated(true);
-    }
-
-    setLoading(false);
-  }, []);
-  
-  async function handleLogin() {
-    const { data: { token } } = await api.post('/authenticate');
-
-    localStorage.setItem('token', JSON.stringify(token));
-    api.defaults.headers.Authorization = `Bearer ${token}`;
-    setAuthenticated(true);
-    history.push('/users');
-  }
-
-  function handleLogout() {
-    setAuthenticated(false);
-    localStorage.removeItem('token');
-    api.defaults.headers.Authorization = undefined;
-    history.push('/login');
-  }
-  
-  return { authenticated, loading, handleLogin, handleLogout };
-}
-```
-
-**authContext.tsx**
-
-```tsx
-import React, { createContext, useState, useEffect } from 'react';
-
-import useAuth from './hooks/useAuth';
-
-export const Context = createContext();
-
-export function AuthProvider({ children }) {
-  const {
-    authenticated, loading, handleLogin, handleLogout,
-  } = useAuth();
-
-  return (
-    <Context.Provider value={{ loading, authenticated, handleLogin, handleLogout }}>
-      {children}
-    </Context.Provider>
-  );
-}
-```
-
----
-
-## Autentificação nas Rotas [React]
-
-Para bloquear rotas nas quais um usuário não pode acessar sem que tenha se autenticado, precisamos **privar** essas rotas em nosso **routes.tsx.**
-
-Faço da seguinte maneira:
-
-1. Defino minha **CustomRoute** que terá como propriedade as seguintes caracteristicas:
-    1. **isPrivate,** que se existir significará que a rota precisa de autenticação antes.
-    2. **...rest,** que será todos as outras propriedades de uma **Route**.
-2. Traremos do **Contexto authContext** nossas variáveis de **state loading** e **authenticated**
-3. **LOADING:** 
-    1. Caso esteja em **loading** iremos exibir a tela de carregamento
-    2. Se não, seguirá adiante.
-4. **PRIVATE** e **AUTHENTICATED:** 
-    1. Se existir a propriedade **isPrivate** e a variável **authenticated** for **FALSE**, então a rota será bloqueada redirecionando o usuário para o **Login**.
-    2. Se não, irá retornar todo o resto das propriedades de deixará seguir adiante.
-
-```tsx
-function CustomRoute({ isPrivate, ...rest }) {
-  const { loading, authenticated } = useContext(Context);
-
-  if (loading) {
-    return <h1>Loading...</h1>;
-  }
-
-  if (isPrivate && !authenticated) {
-    return <Redirect to="/login" />
-  }
-
-  return <Route {...rest} />;
-}
-
-export default function Routes() {
-  return (
-    <Switch>
-      <CustomRoute exact path="/login" component={Login} />
-      <CustomRoute isPrivate exact path="/users" component={Users} />
-    </Switch>
-  );
-```
-
-Ou posso seguir a estratégia feito no **React Native** de separar as Rotas Privadas em um Arquivo diferente, ficando um **authRoutes.tsx** e outro **appRoutes.tsx** por exemplo.
-
----
-
 # Context API no Next.js e React Native
 
 ### Context Next.js
@@ -713,8 +429,6 @@ A Tipagem para esse método é `**GetServerSideProps`** das **Lib** **Next:**
 `import { GetServerSideProps } from 'next';`
 
 Esse método possui um parâmetro, como um **contexto**, que se eu tiver definido o tipo do método corretamente com a tipagem acima, terei acesso aos **snippets** das opções que esse parâmetro me proporciona.
-
-![Funcionalidade%20Avanc%CC%A7ada%20bd27d9bbdc204df18b0abec0ec859ac0/Untitled.png](Funcionalidade%20Avanc%CC%A7ada%20bd27d9bbdc204df18b0abec0ec859ac0/Untitled.png)
 
 Algumas das opções disponíveis.
 
