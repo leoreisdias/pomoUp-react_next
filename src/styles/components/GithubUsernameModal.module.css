@@ -1,0 +1,88 @@
+.overlay{
+  background: #1c2047;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container{
+  background: var(--white);
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem 3rem;
+  border-radius: 5px;
+  box-shadow: 0 0 60px rgba(0,0,0,0.5);
+  text-align: center;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column
+}
+
+.container header{
+  font-size: 6.75rem;
+  font-weight: 600;
+  color: #6b63ff00;
+  background: url('/icons/taken.svg') no-repeat center;
+  background-size: contain;
+}
+
+.container p{
+  font-size: 1.25rem;
+  color: var(--text);
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.container input{
+  font: 400 1rem "Inter", sans-serif;
+
+  height: 2rem;
+  border-radius: 5px;
+  border: 1px solid #2F2E41;
+  padding-left: 1rem;
+}
+
+.container button{
+  position: relative;
+  height: 2rem;
+  top: 0.5rem;
+  background: #5965E0;
+  border: 0;
+  border-radius: 5px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 0;
+
+  transition: ease-in 0.2s;
+}
+
+.container button:hover{
+  filter: brightness(0.8);
+  background: #2F2E41;
+}
+
+.container button:hover img{
+  display: none;
+}
+
+.container button img{
+  width: 2rem;
+  margin-right: 0.25rem;
+}
+
+.container button strong{
+  font-size: 1.25rem;
+  color: var(--white);
+}

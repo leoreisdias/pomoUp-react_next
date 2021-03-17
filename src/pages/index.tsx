@@ -12,16 +12,20 @@ import styles from '../styles/pages/Home.module.css';
 import { CountdownProvider } from '../contexts/CountdownContext';
 import { GetServerSideProps } from 'next';
 import { ChallengesProvider } from '../contexts/ChallengesContext';
+import { Context } from 'node:vm';
+import { ProfileProvider } from '../contexts/ProfileContext';
 
 
 interface HomeProps {
   level: number;
   currentExperience: number;
   challengesCompleted: number;
+
+  name: String;
+  avatar: String;
 }
 
 export default function Home(props: HomeProps) {
-  console.log(props);
 
 
   return (
@@ -38,14 +42,16 @@ export default function Home(props: HomeProps) {
 
         <CountdownProvider>
           <section>
-            <div>
-              <Profile />
-              <CompletedChallenges />
-              <Countdown />
-            </div>
-            <div>
-              <ChallengeBox />
-            </div>
+            <ProfileProvider name={props.name} avatar={props.avatar}>
+              <div>
+                <Profile />
+                <CompletedChallenges />
+                <Countdown />
+              </div>
+              <div>
+                <ChallengeBox />
+              </div>
+            </ProfileProvider>
           </section>
         </CountdownProvider>
       </div>
@@ -53,15 +59,19 @@ export default function Home(props: HomeProps) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
+export const getServerSideProps: GetServerSideProps = async (ctx: Context) => {
 
   const { level, currentExperience, challengesCompleted } = ctx.req.cookies;
+  const { name, avatar } = ctx.req.cookies;
 
   return {
     props: {
       level: Number(level),
       currentExperience: Number(currentExperience),
-      challengesCompleted: Number(challengesCompleted)
+      challengesCompleted: Number(challengesCompleted),
+
+      name: String(name),
+      avatar: String(avatar)
     }
   }
 }

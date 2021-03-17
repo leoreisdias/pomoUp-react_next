@@ -11,7 +11,7 @@
 
 .container section{
     flex: 1;
-    
+
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 6.25rem;
@@ -23,5 +23,6 @@
 @media(max-width: 720px){
     .container section{
         grid-template-columns: 1fr;
+        margin-top: 4rem;
     }
 }
