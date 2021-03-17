@@ -4,7 +4,7 @@ import { createContext, ReactNode, useContext, useState } from "react";
 import { GithubUsernameModal } from "../components/GithubUsernameModal";
 
 interface ProfileContextProps {
-  isGithubModalOpen: boolean;
+  isGithubModalOpen: Boolean;
   githubName: String;
   githubAvatar: String;
   isWrongUsername: Boolean;
@@ -15,12 +15,13 @@ interface ProfileProviderProps {
   children: ReactNode;
   name: String;
   avatar: String;
+  githubModalOpen: boolean;
 }
 
 export const ProfileContext = createContext({} as ProfileContextProps);
 
 export const ProfileProvider = ({ children, ...rest }: ProfileProviderProps) => {
-  const [isGithubModalOpen, setIsGithubModalOpen] = useState(rest.name ? false : true);
+  const [isGithubModalOpen, setIsGithubModalOpen] = useState(!rest.githubModalOpen);
   const [githubName, setGithubName] = useState(rest.name ?? '');
   const [githubAvatar, setGithubAvatar] = useState(rest.avatar ?? '');
   const [isWrongUsername, setIsWrongUsername] = useState(false);

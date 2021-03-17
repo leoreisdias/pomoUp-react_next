@@ -23,9 +23,11 @@ interface HomeProps {
 
   name: String;
   avatar: String;
+  githubModalOpen: boolean;
 }
 
 export default function Home(props: HomeProps) {
+  console.log(props);
 
 
   return (
@@ -42,7 +44,7 @@ export default function Home(props: HomeProps) {
 
         <CountdownProvider>
           <section>
-            <ProfileProvider name={props.name} avatar={props.avatar}>
+            <ProfileProvider name={props.name} avatar={props.avatar} githubModalOpen={props.githubModalOpen}>
               <div>
                 <Profile />
                 <CompletedChallenges />
@@ -62,7 +64,7 @@ export default function Home(props: HomeProps) {
 export const getServerSideProps: GetServerSideProps = async (ctx: Context) => {
 
   const { level, currentExperience, challengesCompleted } = ctx.req.cookies;
-  const { name, avatar } = ctx.req.cookies;
+  const { name, avatar, githubModalOpen } = ctx.req.cookies;
 
   return {
     props: {
@@ -71,7 +73,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx: Context) => {
       challengesCompleted: Number(challengesCompleted),
 
       name: String(name),
-      avatar: String(avatar)
+      avatar: String(avatar),
+      githubModalOpen: Boolean(name)
     }
   }
 }
