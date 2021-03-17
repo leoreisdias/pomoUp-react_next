@@ -8,6 +8,7 @@ interface CountdownContextData {
   isActive: Boolean;
   startCountdown: () => void;
   resetCountdown: () => void;
+  startPauseTime: () => void;
 }
 
 
@@ -41,6 +42,13 @@ export function CountdownProvider({ children }: CountdownProviderProps) {
     setHasFinished(false);
   }
 
+  function startPauseTime() {
+    clearTimeout(countdownTimeout);
+    setIsActive(true);
+    setTime(5 * 60);
+    startNewChallenge();
+  }
+
   useEffect(() => {
 
     if (isActive && time > 0) {
@@ -50,7 +58,6 @@ export function CountdownProvider({ children }: CountdownProviderProps) {
     } else if (isActive && time === 0) {
       setHasFinished(true);
       setIsActive(false);
-      startNewChallenge();
     }
   }, [isActive, time])
 
@@ -63,6 +70,7 @@ export function CountdownProvider({ children }: CountdownProviderProps) {
         isActive,
         startCountdown,
         resetCountdown,
+        startPauseTime
       }}
     >
       {children}

@@ -11,7 +11,7 @@ import { useProfile } from '../contexts/ProfileContext';
 
 const ChallengeBox: React.FC = () => {
   const { activeChallenge, resetChallenge, completeChallenge } = useContext(ChallengesContext);
-  const { resetCountdown } = useContext(CountdownContext);
+  const { resetCountdown, hasFinished, startPauseTime } = useContext(CountdownContext);
   const { isGithubModalOpen } = useProfile();
 
   function handleChallengeSucceeded() {
@@ -66,8 +66,18 @@ const ChallengeBox: React.FC = () => {
           </span>
           <p>
             Avance de Level Completando Desafios
+          </p>
+          {
+            hasFinished &&
+            <button
+              type="button"
+              className={styles.pauseTimeButton}
+              onClick={startPauseTime}
+            >
+              Iniciar Pause Time
+          </button>
+          }
 
-                    </p>
         </div>
       )}
     </div>

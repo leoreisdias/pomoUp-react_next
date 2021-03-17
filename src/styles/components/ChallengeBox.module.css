@@ -40,6 +40,34 @@
     max-width: 70%;
 }
 
+.challengeNotActive button{
+    margin-top: 1rem;
+
+    height: 3rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    border-radius: 5px;
+
+    padding: 1rem;
+
+    color: var(--white);
+    background: var(--green);
+
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    transition: filter 0.5s;
+}
+
+.challengeNotActive button:hover{
+    filter: brightness(0.8);
+}
+
 .challengeActive{
     height: 100%;
 
