@@ -4,10 +4,12 @@ import completed from '../lotties/completed.json';
 
 import styles from '../styles/components/Countdown.module.css';
 import { CountdownContext } from '../contexts/CountdownContext';
+import { ChallengesContext } from '../contexts/ChallengesContext';
 
 
 const Countdown: React.FC = () => {
-    const { minutes, seconds, hasFinished, isActive, startCountdown, resetCountdown } = useContext(CountdownContext)
+    const { minutes, seconds, hasFinished, isActive, startCountdown, resetCountdown } = useContext(CountdownContext);
+    const { hasDoneChallenge } = useContext(ChallengesContext)
 
     const [minuteLeft, minutoRight] = String(minutes).padStart(2, '0').split('');
     const [secondLeft, secondRight] = String(seconds).padStart(2, '0').split('');
@@ -26,7 +28,7 @@ const Countdown: React.FC = () => {
                 </div>
             </div>
 
-            { hasFinished ? (
+            { hasFinished && !hasDoneChallenge ? (
                 <button
                     disabled
                     className={styles.countdownButton}

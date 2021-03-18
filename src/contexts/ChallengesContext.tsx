@@ -16,11 +16,13 @@ interface ChallengesContextData {
     challengesCompleted: number;
     experienceToNextLevel: number;
     activeChallenge: challenge;
+    hasDoneChallenge: boolean;
     levelUp: () => void;
     startNewChallenge: () => void;
     resetChallenge: () => void;
     completeChallenge: () => void;
     closeLevelUpModal: () => void;
+    handleCompletedChallenge: () => void;
 }
 
 interface ChallengesProviderProps {
@@ -39,6 +41,7 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
 
     const [activeChallenge, setActiveChallenge] = useState(null);
     const [isLevelUpModalOpen, setIsLevelUpModalOpen] = useState(false);
+    const [hasDoneChallenge, setHasDoneChallenge] = useState(false);
 
     const experienceToNextLevel = Math.pow((level + 1) * 4, 2);
 
@@ -56,6 +59,10 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
     function levelUp() {
         setLevel(level + 1);
         setIsLevelUpModalOpen(true);
+    }
+
+    function handleCompletedChallenge() {
+        setHasDoneChallenge(false);
     }
 
     function closeLevelUpModal() {
@@ -79,6 +86,7 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
 
     function resetChallenge() {
         setActiveChallenge(null);
+        setHasDoneChallenge(true);
     }
 
     function completeChallenge() {
@@ -96,8 +104,9 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
             levelUp();
         }
 
-        setCurrentExperience(finalExperience);
+
         resetChallenge();
+        setCurrentExperience(finalExperience);
         setChallengesCompleted(challengesCompleted + 1);
     }
 
@@ -109,11 +118,13 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
                 experienceToNextLevel,
                 challengesCompleted,
                 activeChallenge,
+                hasDoneChallenge,
                 levelUp,
                 startNewChallenge,
                 resetChallenge,
                 completeChallenge,
-                closeLevelUpModal
+                closeLevelUpModal,
+                handleCompletedChallenge
             }}
         >
             {children}

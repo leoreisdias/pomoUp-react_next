@@ -55,6 +55,7 @@ export default function Home(props: HomeProps) {
             </ProfileProvider>
           </section>
         </CountdownProvider>
+        <small>v2.2.1</small>
       </div>
     </ChallengesProvider>
   );
