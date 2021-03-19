@@ -14,6 +14,7 @@ import { GetServerSideProps } from 'next';
 import { ChallengesProvider } from '../contexts/ChallengesContext';
 import { Context } from 'node:vm';
 import { ProfileProvider } from '../contexts/ProfileContext';
+import SideBar from '../components/SideBar';
 
 
 interface HomeProps {
@@ -30,34 +31,40 @@ export default function Home(props: HomeProps) {
 
 
   return (
-    <ChallengesProvider
-      level={props.level}
-      currentExperience={props.currentExperience}
-      challengesCompleted={props.challengesCompleted}
-    >
-      <div className={styles.container}>
-        <Head>
-          <title>Inicio | Pomo Up</title>
-        </Head>
-        <ExperienceBar />
+    <main className={styles.wrapper}>
+      <ChallengesProvider
+        level={props.level}
+        currentExperience={props.currentExperience}
+        challengesCompleted={props.challengesCompleted}
+      >
+        <SideBar />
+        <div className={styles.container}>
+          <Head>
+            <title>Inicio | Pomo Up</title>
+          </Head>
 
-        <CountdownProvider>
-          <section>
-            <ProfileProvider name={props.name} avatar={props.avatar} githubModalOpen={props.githubModalOpen}>
-              <div>
-                <Profile />
-                <CompletedChallenges />
-                <Countdown />
-              </div>
-              <div>
-                <ChallengeBox />
-              </div>
-            </ProfileProvider>
-          </section>
-        </CountdownProvider>
-        <small>v2.2.2</small>
-      </div>
-    </ChallengesProvider>
+
+          <ExperienceBar />
+
+          <CountdownProvider>
+            <section>
+              <ProfileProvider name={props.name} avatar={props.avatar} githubModalOpen={props.githubModalOpen}>
+                <div>
+                  <Profile />
+                  <CompletedChallenges />
+                  <Countdown />
+                </div>
+                <div>
+                  <ChallengeBox />
+                </div>
+              </ProfileProvider>
+              <small>v2.2.2</small>
+            </section>
+          </CountdownProvider>
+
+        </div>
+      </ChallengesProvider>
+    </main>
   );
 }
 
