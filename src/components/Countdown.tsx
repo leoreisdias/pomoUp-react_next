@@ -4,6 +4,7 @@ import completed from '../lotties/completed.json';
 
 import styles from '../styles/components/Countdown.module.css';
 import { CountdownContext } from '../contexts/CountdownContext';
+import { motion } from 'framer-motion';
 
 
 const Countdown: React.FC = () => {
@@ -27,9 +28,11 @@ const Countdown: React.FC = () => {
       </div>
 
       { hasFinished && !isInPauseTime ? (
-        <button
+        <motion.button
           disabled
           className={styles.countdownButton}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
         >
           Ciclo Encerrado
           <span>
@@ -40,25 +43,29 @@ const Countdown: React.FC = () => {
               style={{ width: 100, height: 100 }}
             />
           </span>
-        </button>
+        </motion.button>
       ) : (
         <>
           {isActive ? (
-            <button
+            <motion.button
               type="button"
               className={`${styles.countdownButton} ${styles.countdownButtonActive}`}
               onClick={resetCountdown}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
             >
               Abandonar Ciclo
-            </button>
+            </motion.button>
           ) : (
-            <button
+            <motion.button
               type="button"
               className={styles.countdownButton}
               onClick={startCountdown}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
             >
               Iniciar um Ciclo
-            </button>
+            </motion.button>
           )}
         </>
       )}

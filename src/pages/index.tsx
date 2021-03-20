@@ -15,6 +15,7 @@ import { ChallengesProvider } from '../contexts/ChallengesContext';
 import { Context } from 'node:vm';
 import { ProfileProvider } from '../contexts/ProfileContext';
 import SideBar from '../components/SideBar';
+import { motion } from 'framer-motion';
 
 
 interface HomeProps {
@@ -27,17 +28,17 @@ interface HomeProps {
   githubModalOpen: boolean;
 }
 
+
+
 export default function Home(props: HomeProps) {
-
-
   return (
+
     <main className={styles.wrapper}>
       <ChallengesProvider
         level={props.level}
         currentExperience={props.currentExperience}
         challengesCompleted={props.challengesCompleted}
       >
-        <SideBar />
         <div className={styles.container}>
           <Head>
             <title>Inicio | Pomo Up</title>

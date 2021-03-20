@@ -1,30 +1,13 @@
 import '../styles/global.css';
-import { PageTransition } from 'next-page-transitions'
+import MainLayout from '../components/MainLayout';
+import React from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 
-
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, router }) {
   return (
-    <>
-      <PageTransition timeout={300} classNames="page-transition">
-        <Component {...pageProps} />
-      </PageTransition>
-      <style jsx global>{`
-     .page-transition-enter {
-       opacity: 0;
-     }
-     .page-transition-enter-active {
-       opacity: 1;
-       transition: opacity 300ms;
-     }
-     .page-transition-exit {
-       opacity: 1;
-     }
-     .page-transition-exit-active {
-       opacity: 0;
-       transition: opacity 300ms;
-     }
-   `}</style>
-    </>
+    <MainLayout>
+      <Component {...pageProps} />
+    </MainLayout>
   )
 }
 

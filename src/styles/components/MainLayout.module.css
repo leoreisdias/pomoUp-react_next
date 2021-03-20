@@ -1,0 +1,10 @@
+.mainContainer,
+.mainContainer::before,
+.mainContainer::after {
+  box-sizing: border-box;
+}
+
+.mainContainer{
+  display: grid;
+  grid-template-columns: 10% 90%;
+}
