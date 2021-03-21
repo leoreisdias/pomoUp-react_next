@@ -1,5 +1,6 @@
 import axios from "axios";
 import Cookies from "js-cookie";
+import { GetServerSideProps } from "next";
 import { createContext, ReactNode, useContext, useState } from "react";
 import { GithubUsernameModal } from "../components/GithubUsernameModal";
 

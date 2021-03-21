@@ -34,15 +34,17 @@ export default function Home(props: HomeProps) {
   return (
 
     <main className={styles.wrapper}>
+      <Head>
+        <title>Inicio | Pomo Up</title>
+      </Head>
+
       <ChallengesProvider
         level={props.level}
         currentExperience={props.currentExperience}
         challengesCompleted={props.challengesCompleted}
       >
         <div className={styles.container}>
-          <Head>
-            <title>Inicio | Pomo Up</title>
-          </Head>
+
 
 
           <ExperienceBar />

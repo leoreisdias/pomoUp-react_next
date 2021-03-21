@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { FaHome } from 'react-icons/fa';
 import { GiTrophy } from 'react-icons/gi';
 
@@ -7,6 +8,8 @@ import styles from '../styles/components/Siderbar.module.css';
 import { motion } from 'framer-motion';
 
 const SideBar = () => {
+  const { pathname } = useRouter();
+
   return (
     <aside className={styles.container}>
       <div>
@@ -14,16 +17,26 @@ const SideBar = () => {
       </div>
       <div className={styles.menu}>
         <Link href="/">
-          <motion.div whileHover={{ scale: 1.1 }}>
-            <FaHome size={30} />
-                            Home
-                    </motion.div>
+          <span>
+            {pathname == '/' &&
+              <div className={styles.selectedOption}></div>
+            }
+            <motion.div whileHover={{ scale: 1.1 }}>
+              <FaHome size={30} />
+              Home
+            </motion.div>
+          </span>
         </Link>
         <Link href="/ranking">
-          <motion.div whileHover={{ scale: 1.1 }}>
-            <GiTrophy size={30} />
+          <span>
+            {pathname == '/ranking' &&
+              <div className={styles.selectedOption}></div>
+            }
+            <motion.div whileHover={{ scale: 1.1 }} >
+              <GiTrophy size={30} />
                     Rank
-                </motion.div>
+            </motion.div>
+          </span>
         </Link>
       </div>
     </aside>

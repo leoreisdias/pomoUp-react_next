@@ -6,9 +6,13 @@ import styles from '../styles/pages/Ranking.module.css';
 
 const Ranking = () => {
   return (
-    <>
-      <Countdown />
-    </>
+    <section className={styles.wrapper}>
+      <div className={styles.container}>
+        <header>
+          <h2>Rank Pomo-Up</h2>
+        </header>
+      </div>
+    </section>
 
   );
 }
