@@ -10,7 +10,24 @@ const Profile: React.FC = (props) => {
   const { githubName, githubAvatar } = useProfile();
 
   return (
-    <div className={styles.profileContainer}>
+    <motion.div
+      className={styles.profileContainer}
+      initial="hidden"
+      animate="visible"
+      variants={{
+        hidden: {
+          scale: .8,
+          opacity: 0,
+        },
+        visible: {
+          scale: 1,
+          opacity: 1,
+          transition: {
+            delay: .4
+          }
+        }
+      }}
+    >
       <img src={String(githubAvatar)} alt="Avatar" />
       <div>
         <strong>{githubName}</strong>
@@ -19,7 +36,7 @@ const Profile: React.FC = (props) => {
                     Level {level}
         </p>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

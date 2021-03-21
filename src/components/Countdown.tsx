@@ -31,7 +31,13 @@ const Countdown: React.FC = () => {
         <motion.button
           disabled
           className={styles.countdownButton}
-          whileHover={{ scale: 1.1 }}
+          whileHover={{
+            scale: [1, 1.5, 1.2],
+            rotate: [0, 10, -10, 0],
+            transition: {
+              duration: .2
+            }
+          }}
           whileTap={{ scale: 0.9 }}
         >
           Ciclo Encerrado
@@ -51,7 +57,13 @@ const Countdown: React.FC = () => {
               type="button"
               className={`${styles.countdownButton} ${styles.countdownButtonActive}`}
               onClick={resetCountdown}
-              whileHover={{ scale: 1.1 }}
+              whileHover={{
+                scale: [1, 1.5, 1.2],
+                rotate: [0, 10, -10, 0],
+                transition: {
+                  duration: .2
+                }
+              }}
               whileTap={{ scale: 0.9 }}
             >
               Abandonar Ciclo
@@ -61,7 +73,13 @@ const Countdown: React.FC = () => {
               type="button"
               className={styles.countdownButton}
               onClick={startCountdown}
-              whileHover={{ scale: 1.1 }}
+              whileHover={{
+                scale: [1, 1.5, 1.2],
+                rotate: [0, 10, -10, 0],
+                transition: {
+                  duration: .2
+                }
+              }}
               whileTap={{ scale: 0.9 }}
             >
               Iniciar um Ciclo
