@@ -7,12 +7,10 @@ import levelUp from '../lotties/level-up.json';
 
 import { ChallengesContext } from '../contexts/ChallengesContext';
 import { CountdownContext } from '../contexts/CountdownContext';
-import { useProfile } from '../contexts/ProfileContext';
 
 const ChallengeBox: React.FC = () => {
   const { activeChallenge, resetChallenge, completeChallenge } = useContext(ChallengesContext);
   const { hasFinished, startPauseTime, isInPauseTime } = useContext(CountdownContext);
-  const { isGithubModalOpen } = useProfile();
 
   function handleChallengeSucceeded() {
     completeChallenge();
@@ -57,7 +55,7 @@ const ChallengeBox: React.FC = () => {
             <Lottie
               loop={false}
               animationData={levelUp}
-              play={!isGithubModalOpen}
+              play={true}
               style={{ width: 200, height: 200 }}
               speed={0.5}
             />

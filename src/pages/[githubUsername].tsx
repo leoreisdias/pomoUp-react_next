@@ -14,8 +14,7 @@ import { GetServerSideProps } from 'next';
 import { ChallengesProvider } from '../contexts/ChallengesContext';
 import { Context } from 'node:vm';
 import { ProfileProvider } from '../contexts/ProfileContext';
-import SideBar from '../components/SideBar';
-import { motion } from 'framer-motion';
+
 
 
 interface HomeProps {
@@ -25,7 +24,6 @@ interface HomeProps {
 
   name: String;
   avatar: String;
-  githubModalOpen: boolean;
 }
 
 
@@ -45,13 +43,11 @@ export default function Home(props: HomeProps) {
       >
         <div className={styles.container}>
 
-
-
           <ExperienceBar />
 
           <CountdownProvider>
             <section>
-              <ProfileProvider name={props.name} avatar={props.avatar} githubModalOpen={props.githubModalOpen}>
+              <ProfileProvider >
                 <div>
                   <Profile />
                   <CompletedChallenges />
@@ -71,20 +67,14 @@ export default function Home(props: HomeProps) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx: Context) => {
+// export const getServerSideProps: GetServerSideProps = async (ctx: Context) => {
+//   const { level, currentExperience, challengesCompleted } = ctx.req.cookies;
 
-  const { level, currentExperience, challengesCompleted } = ctx.req.cookies;
-  const { name, avatar } = ctx.req.cookies;
-
-  return {
-    props: {
-      level: Number(level),
-      currentExperience: Number(currentExperience),
-      challengesCompleted: Number(challengesCompleted),
-
-      name: String(name),
-      avatar: String(avatar),
-      githubModalOpen: Boolean(name)
-    }
-  }
-}
+//   return {
+//     props: {
+//       level: Number(level),
+//       currentExperience: Number(currentExperience),
+//       challengesCompleted: Number(challengesCompleted),
+//     }
+//   }
+// }
