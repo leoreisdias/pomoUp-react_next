@@ -32,7 +32,7 @@ const Profile: React.FC = (props) => {
       <div>
         <strong>{githubName}</strong>
         <p>
-          <img src="icons/level.svg" alt="level" />
+          <img src="/icons/level.svg" alt="level" />
                     Level {level}
         </p>
       </div>

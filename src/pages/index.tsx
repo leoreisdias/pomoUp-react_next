@@ -28,7 +28,7 @@ export default function Landing(props: LandingProps) {
 
     if (props.username != 'undefined') {
       setUserGithubInfo(props);
-      push(`/user/${githubUsername}`);
+      push(`/user/${props.username}`);
     }
   }, []);
 
@@ -49,9 +49,6 @@ export default function Landing(props: LandingProps) {
     } catch {
       setIsWrongUsername(true);
     }
-
-
-
   }
 
   return (
@@ -79,13 +76,11 @@ export default function Landing(props: LandingProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx: Context) => {
-  const { githubUsername, name, avatar } = ctx.req.cookies;
+  const { username, name, avatar } = ctx.req.cookies;
 
   return {
     props: {
-
-
-      username: String(githubUsername),
+      username: String(username),
       name: String(name),
       avatar_url: String(avatar)
     }
