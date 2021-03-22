@@ -1,90 +1,46 @@
-import React from 'react';
-import Head from 'next/head';
-
-import Profile from '../components/Profile';
-import Countdown from '../components/Countdown';
-import ExperienceBar from '../components/ExperienceBar';
-import CompletedChallenges from '../components/CompletedChallenges';
-import ChallengeBox from '../components/ChallengeBox';
-
-
-import styles from '../styles/pages/Home.module.css';
-import { CountdownProvider } from '../contexts/CountdownContext';
 import { GetServerSideProps } from 'next';
-import { ChallengesProvider } from '../contexts/ChallengesContext';
+import { useRouter } from 'next/router';
 import { Context } from 'node:vm';
-import { ProfileProvider } from '../contexts/ProfileContext';
-import SideBar from '../components/SideBar';
-import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { useProfile } from '../contexts/ProfileContext';
+import styles from '../styles/pages/Landing.module.css';
 
-
-interface HomeProps {
-  level: number;
-  currentExperience: number;
-  challengesCompleted: number;
-
-  name: String;
-  avatar: String;
-  githubModalOpen: boolean;
+interface userProps {
+  githubUsername: string;
+  avatar: string;
+  name: string;
 }
 
-
-
-export default function Home(props: HomeProps) {
-  return (
-
-    <main className={styles.wrapper}>
-      <Head>
-        <title>Inicio | Pomo Up</title>
-      </Head>
-
-      <ChallengesProvider
-        level={props.level}
-        currentExperience={props.currentExperience}
-        challengesCompleted={props.challengesCompleted}
-      >
-        <div className={styles.container}>
-
-
-
-          <ExperienceBar />
-
-          <CountdownProvider>
-            <section>
-              <ProfileProvider name={props.name} avatar={props.avatar} githubModalOpen={props.githubModalOpen}>
-                <div>
-                  <Profile />
-                  <CompletedChallenges />
-                  <Countdown />
-                </div>
-                <div>
-                  <ChallengeBox />
-                </div>
-              </ProfileProvider>
-              <small>v2.2.2</small>
-            </section>
-          </CountdownProvider>
-
-        </div>
-      </ChallengesProvider>
-    </main>
-  );
+interface LandingProps {
+  user: userProps;
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx: Context) => {
+export default function Landing(props: LandingProps) {
+  const { push } = useRouter();
+  const { isWrongUsername } = useProfile();
+  const [githubUsername, setGithubUsername] = useState('');
 
-  const { level, currentExperience, challengesCompleted } = ctx.req.cookies;
-  const { name, avatar } = ctx.req.cookies;
-
-  return {
-    props: {
-      level: Number(level),
-      currentExperience: Number(currentExperience),
-      challengesCompleted: Number(challengesCompleted),
-
-      name: String(name),
-      avatar: String(avatar),
-      githubModalOpen: Boolean(name)
-    }
+  function handleSubmit() {
+    push(`/${githubUsername}`);
   }
+
+  return (
+    (
+      <div className={styles.overlay}>
+        <div className={styles.container}>
+          <header>-</header>
+
+          <p>
+            {isWrongUsername ? 'Username Inexistente, tente outro' : 'Digite seu Username do GitHub'}
+          </p>
+          <input type="text" value={githubUsername} onChange={event => setGithubUsername(event.target.value)} />
+
+          <button type="button" onClick={handleSubmit}>
+            <img src="/favicon.png" alt="Fechar Modal" />
+            <strong>Iniciar</strong>
+          </button>
+        </div>
+      </div >
+    )
+  )
 }

@@ -28,7 +28,7 @@ const Profile: React.FC = (props) => {
         }
       }}
     >
-      <img src={String(githubAvatar)} alt="Avatar" />
+      <img src={String(githubAvatar)} alt=" Avatar" />
       <div>
         <strong>{githubName}</strong>
         <p>

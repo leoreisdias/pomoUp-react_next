@@ -1,15 +1,11 @@
-import axios from "axios";
-import Cookies from "js-cookie";
-import { GetServerSideProps } from "next";
 import { createContext, ReactNode, useContext, useState } from "react";
-import { GithubUsernameModal } from "../components/GithubUsernameModal";
 
 interface ProfileContextProps {
   isGithubModalOpen: Boolean;
   githubName: String;
   githubAvatar: String;
   isWrongUsername: Boolean;
-  getUserDataFromGithubAPI: (string) => void;
+  handleWrongUsername: (boolean) => void;
 }
 
 interface ProfileProviderProps {
@@ -27,24 +23,23 @@ export const ProfileProvider = ({ children, ...rest }: ProfileProviderProps) => 
   const [githubAvatar, setGithubAvatar] = useState(rest.avatar ?? '');
   const [isWrongUsername, setIsWrongUsername] = useState(false);
 
-  async function getUserDataFromGithubAPI(githubUsername: string) {
-    try {
-      const response = await axios.get(`https://api.github.com/users/${githubUsername}`);
-      setIsWrongUsername(false);
-      setGithubName(response.data.name);
-      setGithubAvatar(response.data.avatar_url);
+  // async function getUserDataFromGithubAPI(githubUsername: string) {
+  //   try {
+  //     const response = await axios.get(`https://api.github.com/users/${githubUsername}`);
+  //     setIsWrongUsername(false);
+  //     setGithubName(response.data.name);
+  //     setGithubAvatar(response.data.avatar_url);
 
-      Cookies.set('name', response.data.name);
-      Cookies.set('avatar', response.data.avatar_url);
+  //     Cookies.set('name', response.data.name);
+  //     Cookies.set('avatar', response.data.avatar_url);
 
-      handleGithubModal();
-    } catch {
-      setIsWrongUsername(true);
-    }
-  }
+  //   } catch {
+  //     setIsWrongUsername(true);
+  //   }
+  // }
 
-  function handleGithubModal() {
-    setIsGithubModalOpen(false);
+  function handleWrongUsername(isWrongUserName) {
+    setIsWrongUsername(isWrongUserName);
   }
 
   return (
@@ -52,12 +47,11 @@ export const ProfileProvider = ({ children, ...rest }: ProfileProviderProps) => 
       githubName,
       githubAvatar,
       isGithubModalOpen,
-      getUserDataFromGithubAPI,
+      handleWrongUsername,
       isWrongUsername
     }}>
       {children}
 
-      {isGithubModalOpen && <GithubUsernameModal />}
     </ProfileContext.Provider>
   )
 }
@@ -67,3 +61,4 @@ export function useProfile() {
 
   return context;
 }
+
