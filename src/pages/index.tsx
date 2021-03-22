@@ -1,16 +1,20 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { GetServerSideProps } from 'next';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Context } from 'node:vm';
+import React from 'react';
 import { useEffect, useState } from 'react';
 import { useProfile } from '../contexts/ProfileContext';
 import styles from '../styles/pages/Landing.module.css';
 
 interface LandingProps {
+
+
   name: String;
-  avatar: String;
-  githubUsername: String
+  avatar_url: String;
+  username: String
 }
 
 export default function Landing(props: LandingProps) {
@@ -19,38 +23,43 @@ export default function Landing(props: LandingProps) {
   const [githubUsername, setGithubUsername] = useState('');
   const [isWrongUsername, setIsWrongUsername] = useState(false);
 
-  // useEffect(() => {
-  //   if (!!props.name) {
-  //     const name = Cookies.get('name');
-  //     const avatar_url = Cookies.get('avatar');
-  //     setUserGithubInfo({ name, avatar_url });
-  //     push(`/${githubUsername}`);
-  //   }
-  // }, []);
+  useEffect(() => {
+    console.log(props);
+
+    if (props.username != 'undefined') {
+      setUserGithubInfo(props);
+      push(`/user/${githubUsername}`);
+    }
+  }, []);
 
 
   async function handleSubmit(e) {
     e.preventDefault();
-
     try {
+
       const response = await axios.get(`https://api.github.com/users/${githubUsername}`);
       setIsWrongUsername(false);
       setUserGithubInfo(response.data);
 
-      Cookies.set('githubUsername', githubUsername);
       Cookies.set('name', response.data.name);
       Cookies.set('avatar', response.data.avatar_url);
+      Cookies.set('username', githubUsername);
 
-      push(`/${githubUsername}`);
+      push(`/user/${githubUsername}`);
     } catch {
       setIsWrongUsername(true);
     }
+
+
 
   }
 
   return (
     (
       <div className={styles.overlay}>
+        <Head>
+          <title>Inicio | Pomo Up</title>
+        </Head>
         <div className={styles.container}>
           <header>-</header>
 
@@ -69,13 +78,16 @@ export default function Landing(props: LandingProps) {
   )
 }
 
-// export const getServerSideProps: GetServerSideProps = async (ctx: Context) => {
-//   const { name, avatar } = ctx.req.cookie;
+export const getServerSideProps: GetServerSideProps = async (ctx: Context) => {
+  const { githubUsername, name, avatar } = ctx.req.cookies;
 
-//   return {
-//     props: {
-//       name: String(name),
-//       avatar: String(avatar)
-//     }
-//   }
-// }
+  return {
+    props: {
+
+
+      username: String(githubUsername),
+      name: String(name),
+      avatar_url: String(avatar)
+    }
+  }
+}
