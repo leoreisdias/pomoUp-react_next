@@ -8,3 +8,14 @@
   display: grid;
   grid-template-columns: 10% 90%;
 }
+
+@media(max-width: 600px){
+  .mainContainer{
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .mainContainer aside{
+    margin-top: 15rem;
+  }
+}
