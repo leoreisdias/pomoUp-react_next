@@ -3,7 +3,7 @@ import { createContext, ReactNode, useContext, useState } from "react";
 interface GithubResponseProps {
   name: string;
   avatar_url: string;
-  username: string;
+  login: string;
 }
 
 interface ProfileContextProps {
@@ -25,9 +25,11 @@ export const ProfileProvider = ({ children }: ProfileProviderProps) => {
   const [githubUsername, setGithubUsername] = useState('');
 
   function setUserGithubInfo(data: GithubResponseProps) {
+    console.log(data);
+
     setGithubName(data.name);
     setGithubAvatar(data.avatar_url);
-    setGithubUsername(data.username)
+    setGithubUsername(data.login)
   }
 
   return (

@@ -18,7 +18,7 @@ const SideBar = () => {
         <img src="/favicon.png" alt="" />
       </div>
       <div className={styles.menu}>
-        <Link href={`/${githubUsername}`}>
+        <Link href={`/user/${githubUsername}`}>
           <span>
             {pathname.includes('/user') &&
               <div className={styles.selectedOption}></div>
