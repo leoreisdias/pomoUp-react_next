@@ -14,7 +14,7 @@ interface LandingProps {
 
   name: String;
   avatar_url: String;
-  username: String
+  login: String
 }
 
 export default function Landing(props: LandingProps) {
@@ -26,9 +26,9 @@ export default function Landing(props: LandingProps) {
   useEffect(() => {
     console.log(props);
 
-    if (props.username != 'undefined') {
+    if (props.login != 'undefined') {
       setUserGithubInfo(props);
-      push(`/user/${props.username}`);
+      push(`/user/${props.login}`);
     }
   }, []);
 
@@ -80,7 +80,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: Context) => {
 
   return {
     props: {
-      username: String(username),
+      login: String(username),
       name: String(name),
       avatar_url: String(avatar)
     }

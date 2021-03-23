@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 
 import Profile from '../../components/Profile';
@@ -14,6 +14,8 @@ import { CountdownProvider } from '../../contexts/CountdownContext';
 import { GetServerSideProps } from 'next';
 import { ChallengesProvider } from '../../contexts/ChallengesContext';
 import { Context } from 'node:vm';
+import { useProfile } from '../../contexts/ProfileContext';
+import { useRouter } from 'next/router';
 
 
 
@@ -29,6 +31,16 @@ interface HomeProps {
 
 
 export default function Home(props: HomeProps) {
+  const { push } = useRouter();
+  const { githubUsername } = useProfile();
+
+  useEffect(() => {
+    if (!githubUsername) {
+      push('/');
+    }
+
+  }, [githubUsername])
+
   return (
 
     <main className={styles.wrapper}>
@@ -65,14 +77,14 @@ export default function Home(props: HomeProps) {
   );
 }
 
-// export const getServerSideProps: GetServerSideProps = async (ctx: Context) => {
-//   const { level, currentExperience, challengesCompleted } = ctx.req.cookies;
+export const getServerSideProps: GetServerSideProps = async (ctx: Context) => {
+  const { level, currentExperience, challengesCompleted } = ctx.req.cookies;
 
-//   return {
-//     props: {
-//       level: Number(level),
-//       currentExperience: Number(currentExperience),
-//       challengesCompleted: Number(challengesCompleted),
-//     }
-//   }
-// }
+  return {
+    props: {
+      level: Number(level),
+      currentExperience: Number(currentExperience),
+      challengesCompleted: Number(challengesCompleted),
+    }
+  }
+}
