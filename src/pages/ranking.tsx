@@ -1,18 +1,26 @@
 import React from 'react';
-import Countdown from '../components/Countdown';
-import SideBar from '../components/SideBar';
+import UserBoardCard from '../components/UserBoardCard';
 
 import styles from '../styles/pages/Ranking.module.css';
 
 const Ranking = () => {
   return (
-    <section className={styles.wrapper}>
+    <main className={styles.wrapper}>
       <div className={styles.container}>
         <header>
           <h2>Rank Pomo-Up</h2>
         </header>
+        <section>
+          <div>
+            <strong>POSIÇÃO</strong>
+            <strong>USUÁRIO</strong>
+            <strong>DESAFIOS</strong>
+            <strong>EXPERIÊNCIA</strong>
+          </div>
+          <UserBoardCard />
+        </section>
       </div>
-    </section>
+    </main>
 
   );
 }

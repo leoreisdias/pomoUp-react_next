@@ -1,7 +1,47 @@
 .wrapper{
-
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .container{
-  
+  height: 100vh;
+  max-width: 100%;
+  padding: 2.5rem 2rem;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.container header {
+  margin-bottom: 5rem;
+}
+.container > section div{
+  display: flex;
+  flex-direction: row;
+}
+
+.container > section div > strong:first-child{
+  margin-right: 4rem;
+}
+
+.container > section div > strong:nth-child(2){
+  margin-right: 15rem;
+}
+
+.container > section div > strong:nth-child(3){
+  margin-right: 5rem;
+}
+
+@media(max-width:600px){
+  .container section div strong{
+    font-size: 0.8rem;
+  }
+
+  .container > section div > strong:first-child,
+  .container > section div > strong:nth-child(2),
+  .container > section div > strong:nth-child(3){
+      margin-right:2rem;
+  }
+
 }

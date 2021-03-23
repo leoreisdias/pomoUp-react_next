@@ -1,4 +1,5 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { useRouter } from "next/router";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
 interface GithubResponseProps {
   name: string;
@@ -20,13 +21,18 @@ interface ProfileProviderProps {
 export const ProfileContext = createContext({} as ProfileContextProps);
 
 export const ProfileProvider = ({ children }: ProfileProviderProps) => {
+  const { push } = useRouter();
   const [githubName, setGithubName] = useState('');
   const [githubAvatar, setGithubAvatar] = useState('');
   const [githubUsername, setGithubUsername] = useState('');
 
-  function setUserGithubInfo(data: GithubResponseProps) {
-    console.log(data);
+  useEffect(() => {
+    if (!githubUsername) {
+      push('/')
+    }
+  }, [githubUsername])
 
+  function setUserGithubInfo(data: GithubResponseProps) {
     setGithubName(data.name);
     setGithubAvatar(data.avatar_url);
     setGithubUsername(data.login)

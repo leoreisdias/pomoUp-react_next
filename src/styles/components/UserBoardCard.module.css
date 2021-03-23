@@ -1,0 +1,21 @@
+.cardContainer{
+  margin-top: 4rem;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardContainer span{
+  margin-right: 8rem;
+}
+
+.cardContainer  div > div:first-child  > div > strong p > img{
+  width: 2rem;
+  height: 2rem;
+}
+
+.cardContainer  div > div:first-child  > div > strong{
+  font-size: 1rem;
+}
