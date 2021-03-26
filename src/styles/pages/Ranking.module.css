@@ -18,7 +18,6 @@
 }
 .container > section div{
   display: flex;
-  flex-direction: row;
 }
 
 .container > section div > strong:first-child{
