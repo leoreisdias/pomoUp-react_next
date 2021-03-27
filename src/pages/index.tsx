@@ -10,8 +10,6 @@ import { useProfile } from '../contexts/ProfileContext';
 import styles from '../styles/pages/Landing.module.css';
 
 interface LandingProps {
-
-
   name: String;
   avatar_url: String;
   login: String
@@ -23,27 +21,12 @@ export default function Landing(props: LandingProps) {
   const [githubUsername, setGithubUsername] = useState('');
   const [isWrongUsername, setIsWrongUsername] = useState(false);
 
-  useEffect(() => {
-    console.log(props);
-
-    if (props.login != 'undefined') {
-      setUserGithubInfo(props);
-      push(`/user/${props.login}`);
-    }
-  }, []);
-
-
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-
       const response = await axios.get(`https://api.github.com/users/${githubUsername}`);
       setIsWrongUsername(false);
       setUserGithubInfo(response.data);
-
-      Cookies.set('name', response.data.name);
-      Cookies.set('avatar', response.data.avatar_url);
-      Cookies.set('username', githubUsername);
 
       push(`/user/${githubUsername}`);
     } catch {
@@ -76,11 +59,20 @@ export default function Landing(props: LandingProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx: Context) => {
-  const { username, name, avatar } = ctx.req.cookies;
+  const { login, name, avatar } = ctx.req.cookies;
+
+  if (login) {
+    return {
+      redirect: {
+        destination: `/user/${login}`,
+        permanent: false
+      }
+    }
+  }
 
   return {
     props: {
-      login: String(username),
+      login: String(login),
       name: String(name),
       avatar_url: String(avatar)
     }

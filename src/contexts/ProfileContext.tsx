@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
@@ -35,7 +36,11 @@ export const ProfileProvider = ({ children }: ProfileProviderProps) => {
   function setUserGithubInfo(data: GithubResponseProps) {
     setGithubName(data.name);
     setGithubAvatar(data.avatar_url);
-    setGithubUsername(data.login)
+    setGithubUsername(data.login);
+
+    Cookies.set('name', data.name);
+    Cookies.set('avatar', data.avatar_url);
+    Cookies.set('login', data.login);
   }
 
   return (

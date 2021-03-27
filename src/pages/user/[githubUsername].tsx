@@ -24,6 +24,7 @@ interface HomeProps {
   currentExperience: number;
   challengesCompleted: number;
 
+  login: String;
   name: String;
   avatar: String;
 }
@@ -31,15 +32,11 @@ interface HomeProps {
 
 
 export default function Home(props: HomeProps) {
-  const { push } = useRouter();
-  const { githubUsername } = useProfile();
+  const { setUserGithubInfo } = useProfile();
 
   useEffect(() => {
-    if (!githubUsername) {
-      push('/');
-    }
-
-  }, [githubUsername])
+    setUserGithubInfo(props);
+  }, [])
 
   return (
 
@@ -79,12 +76,26 @@ export default function Home(props: HomeProps) {
 
 export const getServerSideProps: GetServerSideProps = async (ctx: Context) => {
   const { level, currentExperience, challengesCompleted } = ctx.req.cookies;
+  const { login, name, avatar } = ctx.req.cookies;
+
+  if (!login) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
 
   return {
     props: {
       level: Number(level),
       currentExperience: Number(currentExperience),
       challengesCompleted: Number(challengesCompleted),
+
+      login: String(login),
+      name: String(name),
+      avatar_url: String(avatar)
     }
   }
 }
