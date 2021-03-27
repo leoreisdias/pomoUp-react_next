@@ -3,6 +3,7 @@ import MainLayout from '../components/MainLayout';
 import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ProfileProvider } from '../contexts/ProfileContext';
+import { useRouter } from 'next/router';
 
 const pageTransitionVariants = {
   pageInitial: {
@@ -26,13 +27,15 @@ const pageTransitionVariants = {
 }
 
 function MyApp({ Component, pageProps, router }) {
+  const { pathname } = useRouter();
+
   return (
     <ProfileProvider >
       <MainLayout>
         <AnimatePresence exitBeforeEnter>
           <motion.div
             key={router.route}
-            initial="pageInitial"
+            initial={pathname == '/' ? "pageAnimate" : "pageInitial"}
             animate="pageAnimate"
             exit="pageExit"
             variants={pageTransitionVariants}

@@ -62,7 +62,7 @@ export default function Home(props: HomeProps) {
               <div>
                 <ChallengeBox />
               </div>
-              <small>v2.3</small>
+              <small>v2.5</small>
             </section>
           </CountdownProvider>
 

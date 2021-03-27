@@ -30,6 +30,12 @@
   flex-direction: column
 }
 
+.container span{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .container header{
   font-size: 8.75rem;
   font-weight: 600;
