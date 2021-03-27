@@ -32,6 +32,7 @@ export default function Landing(props: LandingProps) {
 
     } catch {
       setIsWrongUsername(true);
+      setLogin('');
     }
   }
 
@@ -44,10 +45,8 @@ export default function Landing(props: LandingProps) {
         <div className={styles.container}>
           <header>-</header>
 
-          <p>
-            {isWrongUsername ? 'Username Inexistente, tente outro' : 'Digite seu Username do GitHub'}
-          </p>
-          <input type="text" value={login} onChange={event => setLogin(event.target.value)} />
+          <input type="text" value={login} onChange={event => setLogin(event.target.value)} placeholder={isWrongUsername ? 'Username Inexistente' : 'Github Username'} />
+          {isWrongUsername && <small>Username Inválido!</small>}
 
           <button type="button" onClick={handleSubmit}>
             <img src="/favicon.png" alt="Fechar Modal" />

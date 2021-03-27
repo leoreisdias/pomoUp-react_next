@@ -16,6 +16,11 @@
     --blue: #5965E0;
     --blue-dark: #4953b8;
     --blue-twitter: #2aa9e0;
+    --dark: #1c2047;
+    --dark-light: #414991;
+    --background-dark: #131215;
+    --background-dark-light: #212025;
+
 }
 
 @media(max-width: 1080px){

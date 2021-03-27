@@ -1,10 +1,12 @@
 .overlay{
-  background: #1c2047;
+  background: var(--background-dark);
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+
+  z-index: 1;
 
   display: flex;
   justify-content: center;
@@ -12,14 +14,16 @@
 }
 
 .container{
-  background: var(--white);
+  background: var(--background-dark-light);
   width: 100%;
   max-width: 400px;
+  height: 400px;
+
   padding: 2rem 3rem;
   border-radius: 5px;
   box-shadow: 0 0 60px rgba(0,0,0,0.5);
+
   text-align: center;
-  position: relative;
 
   display: flex;
   justify-content: center;
@@ -27,34 +31,47 @@
 }
 
 .container header{
-  font-size: 6.75rem;
+  font-size: 8.75rem;
   font-weight: 600;
   color: #6b63ff00;
-  background: url('/icons/taken.svg') no-repeat center;
+  background: url('/icons/cup.svg') no-repeat center;
   background-size: contain;
 }
 
 .container p{
   font-size: 1.25rem;
-  color: var(--text);
-  margin-top: 0.5rem;
+  color: var(--white);
+  margin-top: 1.5rem;
   margin-bottom: 0.5rem;
+  text-align: right;
 }
 
 .container input{
   font: 400 1rem "Inter", sans-serif;
 
-  height: 2rem;
+  height: 3rem;
   border-radius: 5px;
-  border: 1px solid #2F2E41;
+  border: 1px solid var(--blue);
   padding-left: 1rem;
+  color: var(--white);
+
+  background: var(--background-dark);
 }
+
+.container small{
+  margin-top: 0.3rem;
+  margin-left: 0.2rem;
+
+  text-align: left;
+  color: var(--red);
+}
+
 
 .container button{
   position: relative;
-  height: 2rem;
+  height: 3rem;
   top: 0.5rem;
-  background: #5965E0;
+  background: var(--blue);
   border: 0;
   border-radius: 5px;
 
@@ -70,7 +87,7 @@
 
 .container button:hover{
   filter: brightness(0.8);
-  background: #2F2E41;
+  background: var(--dark-light);
 }
 
 .container button:hover img{
