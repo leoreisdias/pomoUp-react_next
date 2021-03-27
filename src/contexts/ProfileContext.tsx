@@ -50,7 +50,6 @@ export const ProfileProvider = ({ children }: ProfileProviderProps) => {
     });
 
     const { user } = response.data;
-    console.log(user);
 
     if (!user) {
       await axios.post('/api/subscribe', {

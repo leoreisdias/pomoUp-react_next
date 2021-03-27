@@ -1,11 +1,13 @@
-import axios from 'axios';
-import { motion } from 'framer-motion';
-import { GetServerSideProps } from 'next';
-import { Context } from 'node:vm';
 import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
+import axios from 'axios';
+import Lottie from 'react-lottie-player'
+import { motion } from 'framer-motion';
 import UserBoardCard from '../components/UserBoardCard';
 
 import styles from '../styles/pages/Ranking.module.css';
+
+import loadingLottie from '../lotties/loading.json';
 
 interface usersProps {
   _id: string,
@@ -33,12 +35,24 @@ const Ranking = (props: usersProps) => {
 
   if (loading) {
     return (
-      <h1>carregando...</h1>
+      <div className={styles.loadingContainer}>
+        <Lottie
+          loop={true}
+          animationData={loadingLottie}
+          play={true}
+          style={{ width: 400, height: 400 }}
+          speed={1}
+        />
+      </div>
     )
   }
 
   return (
+
     <main className={styles.wrapper}>
+      <Head>
+        <title>Inicio | Pomo Up</title>
+      </Head>
       <div className={styles.container}>
         <header>
           <h2>Rank Pomo-Up</h2>

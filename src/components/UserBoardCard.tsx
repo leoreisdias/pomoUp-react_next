@@ -1,7 +1,5 @@
 import { motion } from 'framer-motion';
 import React from 'react';
-import { useChallenges } from '../contexts/ChallengesContext';
-import { useProfile } from '../contexts/ProfileContext';
 
 import styles from '../styles/components/UserBoardCard.module.css';
 
@@ -29,7 +27,7 @@ const UserBoardCard = (props: usersProps) => {
   return (
     <motion.main className={styles.cardContainer} variants={cardVariants}>
       <span>
-        1
+        {props.position}
       </span>
       <div className={styles.profileContainer}>
         <img src={String(props.avatar)} alt=" Avatar" />

@@ -72,19 +72,20 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
     setChallengesCompleted(user.challengesCompleted);
   }
 
-  async function levelUp() {
+  function levelUp() {
     setLevel(level + 1);
     setIsLevelUpModalOpen(true);
+  }
+
+  async function closeLevelUpModal() {
+    setIsLevelUpModalOpen(false);
 
     await axios.post('/api/update', {
       login,
-      level,
-      currentExperience,
-      challengesCompleted
+      level: level,
+      currentExperience: currentExperience,
+      challengesCompleted: challengesCompleted
     });
-  }
-  function closeLevelUpModal() {
-    setIsLevelUpModalOpen(false);
   }
 
   function startNewChallenge() {
@@ -107,7 +108,7 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
     setHasDoneChallenge(true);
   }
 
-  function completeChallenge() {
+  async function completeChallenge() {
     if (!activeChallenge) {
       return;
     }
