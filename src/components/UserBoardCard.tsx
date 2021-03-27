@@ -5,6 +5,15 @@ import { useProfile } from '../contexts/ProfileContext';
 
 import styles from '../styles/components/UserBoardCard.module.css';
 
+interface usersProps {
+  name: string,
+  level: number,
+  avatar: string,
+  exp: number,
+  challenges: number,
+  position: number
+}
+
 const cardVariants = {
   initial: { scale: 0.96, y: 30, opacity: 0 },
   enter: { scale: 1, y: 0, opacity: 1, transition: { duration: 1, ease: [0.48, 0.15, 0.25, 0.96] } },
@@ -16,28 +25,25 @@ const cardVariants = {
   }
 }
 
-const UserBoardCard = () => {
-  const { level } = useChallenges();
-  const { githubName, githubAvatar } = useProfile();
-
+const UserBoardCard = (props: usersProps) => {
   return (
     <motion.main className={styles.cardContainer} variants={cardVariants}>
       <span>
         1
       </span>
       <div className={styles.profileContainer}>
-        <img src={String(githubAvatar)} alt=" Avatar" />
+        <img src={String(props.avatar)} alt=" Avatar" />
         <div>
-          <strong>{githubName}</strong>
+          <strong>{props.name}</strong>
           <span>
             <img src="/icons/level.svg" alt="level" />
-                    Level {level}
+                    Level {props.level}
           </span>
         </div>
       </div>
 
-      <strong><span>24 </span> completados</strong>
-      <strong><span>14000</span> xp</strong>
+      <strong><span>{props.challenges} </span> completados</strong>
+      <strong><span>{props.exp}</span> xp</strong>
 
     </motion.main>
   );

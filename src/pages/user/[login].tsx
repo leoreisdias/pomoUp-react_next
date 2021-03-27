@@ -30,10 +30,10 @@ interface HomeProps {
 
 
 export default function Home(props: HomeProps) {
-  const { setUserGithubInfo } = useProfile();
+  const { handleAlreadyLoggedIn } = useProfile();
 
   useEffect(() => {
-    setUserGithubInfo(props);
+    handleAlreadyLoggedIn(props);
   }, [])
 
   return (

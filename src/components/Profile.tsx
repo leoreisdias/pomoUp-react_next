@@ -6,13 +6,13 @@ import styles from '../styles/components/Profile.module.css';
 
 const Profile: React.FC = (props) => {
   const { level } = useChallenges();
-  const { githubName, githubAvatar } = useProfile();
+  const { name, avatar } = useProfile();
 
   return (
     <div className={styles.profileContainer}>
-      <img src={String(githubAvatar)} alt=" Avatar" />
+      <img src={String(avatar)} alt=" Avatar" />
       <div>
-        <strong>{githubName}</strong>
+        <strong>{name}</strong>
         <p>
           <img src="/icons/level.svg" alt="level" />
                     Level {level}

@@ -16,18 +16,19 @@ interface LandingProps {
 
 export default function Landing(props: LandingProps) {
   const { push } = useRouter();
-  const { setUserGithubInfo } = useProfile();
-  const [githubUsername, setGithubUsername] = useState('');
+  const { handleLoginAndUserInfo } = useProfile();
+  const [login, setLogin] = useState('');
   const [isWrongUsername, setIsWrongUsername] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const response = await axios.get(`https://api.github.com/users/${githubUsername}`);
+      const response = await axios.get(`https://api.github.com/users/${login}`);
       setIsWrongUsername(false);
-      setUserGithubInfo(response.data);
 
-      push(`/user/${githubUsername}`);
+      await handleLoginAndUserInfo(response.data);
+      push(`/user/${login}`);
+
     } catch {
       setIsWrongUsername(true);
     }
@@ -45,7 +46,7 @@ export default function Landing(props: LandingProps) {
           <p>
             {isWrongUsername ? 'Username Inexistente, tente outro' : 'Digite seu Username do GitHub'}
           </p>
-          <input type="text" value={githubUsername} onChange={event => setGithubUsername(event.target.value)} />
+          <input type="text" value={login} onChange={event => setLogin(event.target.value)} />
 
           <button type="button" onClick={handleSubmit}>
             <img src="/favicon.png" alt="Fechar Modal" />
@@ -58,7 +59,7 @@ export default function Landing(props: LandingProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx: Context) => {
-  const { login, name, avatar } = ctx.req.cookies;
+  const { login } = ctx.req.cookies;
 
   if (login) {
     return {
@@ -72,8 +73,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: Context) => {
   return {
     props: {
       login: String(login),
-      name: String(name),
-      avatar_url: String(avatar)
     }
   }
 }

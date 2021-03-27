@@ -10,7 +10,7 @@ import { useProfile } from '../contexts/ProfileContext';
 
 const SideBar = () => {
   const { pathname } = useRouter();
-  const { githubUsername } = useProfile();
+  const { login } = useProfile();
 
   return (
     <aside className={styles.container}>
@@ -18,7 +18,7 @@ const SideBar = () => {
         <img src="/favicon.png" alt="" />
       </div>
       <div className={styles.menu}>
-        <Link href={`/user/${githubUsername}`}>
+        <Link href={`/user/${login}`}>
           <span>
             {pathname.includes('/user') &&
               <div className={styles.selectedOption}></div>
