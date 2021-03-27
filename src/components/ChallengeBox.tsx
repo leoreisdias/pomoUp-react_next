@@ -27,7 +27,7 @@ const ChallengeBox: React.FC = () => {
           <header>Ganhe {activeChallenge.amount} xp</header>
 
           <main>
-            <img src={`icons/${activeChallenge.type}.svg`} alt="Corpo Desafio" />
+            <img src={`/icons/${activeChallenge.type}.svg`} alt="Corpo Desafio" />
             <strong>Novo Desafio!</strong>
             <p>{activeChallenge.description}</p>
           </main>
