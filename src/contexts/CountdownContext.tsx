@@ -88,3 +88,9 @@ export function CountdownProvider({ children }: CountdownProviderProps) {
     </CountdownContext.Provider>
   );
 }
+
+export function useCountdown() {
+  const context = useContext(CountdownContext);
+
+  return context;
+}

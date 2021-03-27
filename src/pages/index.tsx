@@ -1,11 +1,10 @@
 import axios from 'axios';
-import Cookies from 'js-cookie';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Context } from 'node:vm';
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useProfile } from '../contexts/ProfileContext';
 import styles from '../styles/pages/Landing.module.css';
 

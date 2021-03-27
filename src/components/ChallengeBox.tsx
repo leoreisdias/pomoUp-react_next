@@ -1,16 +1,16 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Lottie from 'react-lottie-player';
 
 import styles from '../styles/components/ChallengeBox.module.css';
 
 import levelUp from '../lotties/level-up.json';
 
-import { ChallengesContext } from '../contexts/ChallengesContext';
-import { CountdownContext } from '../contexts/CountdownContext';
+import { useChallenges } from '../contexts/ChallengesContext';
+import { useCountdown } from '../contexts/CountdownContext';
 
 const ChallengeBox: React.FC = () => {
-  const { activeChallenge, resetChallenge, completeChallenge } = useContext(ChallengesContext);
-  const { hasFinished, startPauseTime, isInPauseTime } = useContext(CountdownContext);
+  const { activeChallenge, resetChallenge, completeChallenge } = useChallenges();
+  const { hasFinished, startPauseTime, isInPauseTime } = useCountdown();
 
   function handleChallengeSucceeded() {
     completeChallenge();

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import React, { useContext } from 'react';
-import { ChallengesContext } from '../contexts/ChallengesContext';
+import React from 'react';
+import { useChallenges } from '../contexts/ChallengesContext';
 import { useProfile } from '../contexts/ProfileContext';
 
 import styles from '../styles/components/UserBoardCard.module.css';
@@ -17,7 +17,7 @@ const cardVariants = {
 }
 
 const UserBoardCard = () => {
-  const { level } = useContext(ChallengesContext);
+  const { level } = useChallenges();
   const { githubName, githubAvatar } = useProfile();
 
   return (

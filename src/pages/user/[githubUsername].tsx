@@ -15,8 +15,6 @@ import { GetServerSideProps } from 'next';
 import { ChallengesProvider } from '../../contexts/ChallengesContext';
 import { Context } from 'node:vm';
 import { useProfile } from '../../contexts/ProfileContext';
-import { useRouter } from 'next/router';
-
 
 
 interface HomeProps {

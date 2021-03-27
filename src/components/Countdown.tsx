@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Lottie from 'react-lottie-player';
 import completed from '../lotties/completed.json';
 
 import styles from '../styles/components/Countdown.module.css';
-import { CountdownContext } from '../contexts/CountdownContext';
+import { useCountdown } from '../contexts/CountdownContext';
 import { motion } from 'framer-motion';
 
 
 const Countdown: React.FC = () => {
-  const { minutes, seconds, hasFinished, isActive, startCountdown, resetCountdown, isInPauseTime } = useContext(CountdownContext);
+  const { minutes, seconds, hasFinished, isActive, startCountdown, resetCountdown, isInPauseTime } = useCountdown();
 
   const [minuteLeft, minutoRight] = String(minutes).padStart(2, '0').split('');
   const [secondLeft, secondRight] = String(seconds).padStart(2, '0').split('');

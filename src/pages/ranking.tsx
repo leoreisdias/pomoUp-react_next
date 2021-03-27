@@ -4,8 +4,6 @@ import UserBoardCard from '../components/UserBoardCard';
 
 import styles from '../styles/pages/Ranking.module.css';
 
-
-
 const Ranking = () => {
   return (
     <main className={styles.wrapper}>
