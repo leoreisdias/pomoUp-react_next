@@ -1,16 +1,27 @@
+import { motion } from 'framer-motion';
 import React, { useContext } from 'react';
 import { ChallengesContext } from '../contexts/ChallengesContext';
 import { useProfile } from '../contexts/ProfileContext';
 
 import styles from '../styles/components/UserBoardCard.module.css';
-import Profile from './Profile';
+
+const cardVariants = {
+  initial: { scale: 0.96, y: 30, opacity: 0 },
+  enter: { scale: 1, y: 0, opacity: 1, transition: { duration: 1, ease: [0.48, 0.15, 0.25, 0.96] } },
+  exit: {
+    scale: 0.6,
+    y: 100,
+    opacity: 0,
+    transition: { duration: 0.2, ease: [0.48, 0.15, 0.25, 0.96] }
+  }
+}
 
 const UserBoardCard = () => {
   const { level } = useContext(ChallengesContext);
   const { githubName, githubAvatar } = useProfile();
 
   return (
-    <main className={styles.cardContainer}>
+    <motion.main className={styles.cardContainer} variants={cardVariants}>
       <span>
         1
       </span>
@@ -18,15 +29,17 @@ const UserBoardCard = () => {
         <img src={String(githubAvatar)} alt=" Avatar" />
         <div>
           <strong>{githubName}</strong>
-          <p>
+          <span>
             <img src="/icons/level.svg" alt="level" />
                     Level {level}
-          </p>
+          </span>
         </div>
       </div>
-      <strong><span>24</span> completados</strong>
+
+      <strong><span>24 </span> completados</strong>
       <strong><span>14000</span> xp</strong>
-    </main>
+
+    </motion.main>
   );
 }
 

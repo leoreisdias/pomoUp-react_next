@@ -2,11 +2,13 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  overflow: auto;
 }
 
 .container{
   height: 100vh;
-  max-width: 100%;
+  width: 100%;
+  max-width: 992px;
   padding: 2.5rem 2rem;
 
   display: flex;
@@ -14,33 +16,13 @@
 }
 
 .container header {
-  margin-bottom: 5rem;
-}
-.container > section div{
-  display: flex;
+  margin-bottom: 2rem;
 }
 
-.container > section div > strong:first-child{
-  margin-right: 4rem;
+.container section div:first-child{
+  display: grid;
+  grid-template-columns: 6rem 2fr 1fr 1fr;
+
+  margin-bottom: 1rem;
 }
 
-.container > section div > strong:nth-child(2){
-  margin-right: 15rem;
-}
-
-.container > section div > strong:nth-child(3){
-  margin-right: 5rem;
-}
-
-@media(max-width:600px){
-  .container section div strong{
-    font-size: 0.8rem;
-  }
-
-  .container > section div > strong:first-child,
-  .container > section div > strong:nth-child(2),
-  .container > section div > strong:nth-child(3){
-      margin-right:2rem;
-  }
-
-}

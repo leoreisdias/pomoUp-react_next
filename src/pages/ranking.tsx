@@ -1,7 +1,10 @@
+import { motion } from 'framer-motion';
 import React from 'react';
 import UserBoardCard from '../components/UserBoardCard';
 
 import styles from '../styles/pages/Ranking.module.css';
+
+
 
 const Ranking = () => {
   return (
@@ -10,7 +13,18 @@ const Ranking = () => {
         <header>
           <h2>Rank Pomo-Up</h2>
         </header>
-        <section>
+        <motion.section initial="initial" animate="enter" exit="exit" variants={{
+          enter: {
+            transition: {
+              staggerChildren: 0.4
+            }
+          },
+          exit: {
+            transition: {
+              staggerChildren: 0.1
+            }
+          }
+        }}>
           <div>
             <strong>POSIÇÃO</strong>
             <strong>USUÁRIO</strong>
@@ -18,7 +32,17 @@ const Ranking = () => {
             <strong>EXPERIÊNCIA</strong>
           </div>
           <UserBoardCard />
-        </section>
+          <UserBoardCard />
+          <UserBoardCard />
+          <UserBoardCard />
+          <UserBoardCard />
+          <UserBoardCard />
+          <UserBoardCard />
+          <UserBoardCard />
+          <UserBoardCard />
+          <UserBoardCard />
+
+        </motion.section>
       </div>
     </main>
 

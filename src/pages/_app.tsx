@@ -4,6 +4,27 @@ import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ProfileProvider } from '../contexts/ProfileContext';
 
+const pageTransitionVariants = {
+  pageInitial: {
+    opacity: 0.8,
+    x: 1000,
+  },
+  pageAnimate: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.5
+    },
+  },
+  pageExit: {
+    opacity: 0,
+    x: 1000,
+    transition: {
+      duration: 1
+    },
+  }
+}
+
 function MyApp({ Component, pageProps, router }) {
   return (
     <ProfileProvider >
@@ -14,26 +35,7 @@ function MyApp({ Component, pageProps, router }) {
             initial="pageInitial"
             animate="pageAnimate"
             exit="pageExit"
-            variants={{
-              pageInitial: {
-                opacity: 0.8,
-                x: 1000,
-              },
-              pageAnimate: {
-                opacity: 1,
-                x: 0,
-                transition: {
-                  duration: 1
-                },
-              },
-              pageExit: {
-                opacity: 0,
-                x: 1000,
-                transition: {
-                  duration: 0.5
-                },
-              }
-            }}
+            variants={pageTransitionVariants}
           >
             <Component {...pageProps} />
           </motion.div>
