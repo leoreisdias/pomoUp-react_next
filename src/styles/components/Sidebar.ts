@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const SidebarContainer = styled.aside`
 display: grid;
 
-grid-template-rows: 10% 90%;
+grid-template-rows: 10% 80% 10%;
 justify-content: center;
 align-items: center;
 
@@ -16,6 +16,16 @@ background: ${props => props.theme.colors.blue};
   justify-content: center;
 }
 
+& > div:last-child{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: ${props => props.theme.colors.white};
+  cursor: pointer;
+}
+
 @media(max-width: 600px){
   position: fixed;
   bottom: 0;
@@ -23,7 +33,7 @@ background: ${props => props.theme.colors.blue};
   z-index: 1;
 
   grid-template-rows: 100%;
-  grid-template-columns: 10% 90%;
+  grid-template-columns: 10% 80% 10%;
 
   height: 5rem;
   width: 100vw;
@@ -32,7 +42,6 @@ background: ${props => props.theme.colors.blue};
     justify-content: flex-start;
   }
 }
-
 `;
 
 export const Menu = styled.div`
@@ -49,7 +58,7 @@ color: ${props => props.theme.colors.white};
   cursor: pointer;
 }
 
-& span:last-child{
+& span:not(:first-child){
   margin-top: 1rem;
 }
 

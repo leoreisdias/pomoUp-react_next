@@ -1,6 +1,6 @@
 import React from 'react';
-import { useChallenges } from '../contexts/ChallengesContext';
 import { useProfile } from '../contexts/ProfileContext';
+import { useChallenges } from '../contexts/ChallengesContext';
 
 import { ProfileContainer } from '../styles/components/Profile';
 

@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { GetServerSideProps } from 'next';
+import { Context } from 'node:vm';
 import Head from 'next/head';
 
 import Profile from '../../components/Profile';
@@ -6,10 +8,9 @@ import Countdown from '../../components/Countdown';
 import ExperienceBar from '../../components/ExperienceBar';
 import CompletedChallenges from '../../components/CompletedChallenges';
 import ChallengeBox from '../../components/ChallengeBox';
+
 import { CountdownProvider } from '../../contexts/CountdownContext';
-import { GetServerSideProps } from 'next';
 import { ChallengesProvider } from '../../contexts/ChallengesContext';
-import { Context } from 'node:vm';
 import { useProfile } from '../../contexts/ProfileContext';
 
 import { HomeWrapper, HomeContainer } from '../../styles/pages/Home'

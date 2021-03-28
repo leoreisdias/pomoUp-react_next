@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import axios from 'axios';
-import Lottie from 'react-lottie-player'
+
 import { motion } from 'framer-motion';
+import Lottie from 'react-lottie-player'
+
 import UserBoardCard from '../components/UserBoardCard';
 
 import { RankingWrapper, LoadingContainer, RankingContainer } from '../styles/pages/Ranking'

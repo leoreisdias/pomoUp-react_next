@@ -1,11 +1,10 @@
 import React from 'react';
 import Lottie from 'react-lottie-player';
 
-
-import levelUp from '../lotties/level-up.json';
-
 import { useChallenges } from '../contexts/ChallengesContext';
 import { useCountdown } from '../contexts/CountdownContext';
+
+import levelUp from '../lotties/level-up.json';
 
 import { ChallengeActive, ChallengeNotActive, ChallengeButton, ChallengeBoxContainer } from '../styles/components/ChallengeBox'
 

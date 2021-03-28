@@ -1,7 +1,7 @@
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { useRouter } from "next/router";
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
 interface GithubResponseProps {
   name: string;
@@ -15,6 +15,7 @@ interface ProfileContextProps {
   login: string;
   handleLoginAndUserInfo: (GithubResponseProps) => void;
   handleAlreadyLoggedIn: (GithubResponseProps) => void;
+  handleLoggout: () => void;
 }
 
 interface ProfileProviderProps {
@@ -30,11 +31,10 @@ export const ProfileProvider = ({ children }: ProfileProviderProps) => {
   const [avatar, setAvatar] = useState('');
   const [login, setLogin] = useState('');
 
-  useEffect(() => {
-    if (!name) {
-      push('/')
-    }
-  }, [name]);
+  function handleLoggout() {
+    Cookies.remove('login');
+    setLogin('');
+  }
 
   function handleAlreadyLoggedIn(data: GithubResponseProps) {
     setName(data.name);
@@ -78,7 +78,8 @@ export const ProfileProvider = ({ children }: ProfileProviderProps) => {
       avatar,
       login,
       handleLoginAndUserInfo,
-      handleAlreadyLoggedIn
+      handleAlreadyLoggedIn,
+      handleLoggout
     }}>
       {children}
 

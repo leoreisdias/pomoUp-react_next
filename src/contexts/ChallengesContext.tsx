@@ -1,10 +1,10 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
-
-import challenges from '../../challenges.json';
-import { LevelUpModal } from '../components/LevelUpModal';
 import axios from 'axios';
+
+import { LevelUpModal } from '../components/LevelUpModal';
 import { useProfile } from './ProfileContext';
+import challenges from '../../challenges.json';
 
 interface userProps {
   level: number;

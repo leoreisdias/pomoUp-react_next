@@ -1,11 +1,13 @@
-import MainLayout from '../components/MainLayout';
 import React from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { ProfileProvider } from '../contexts/ProfileContext';
 import { useRouter } from 'next/router';
+import { AnimatePresence, motion } from 'framer-motion';
+
+import MainLayout from '../components/MainLayout';
+
+import { ProfileProvider } from '../contexts/ProfileContext';
+
 import { ThemeProvider } from 'styled-components';
 import theme from '../styles/theme';
-
 import GlobalStyle from '../styles/global';
 
 const pageTransitionVariants = {
@@ -41,7 +43,7 @@ function MyApp({ Component, pageProps, router }) {
               key={router.route}
               initial={pathname == '/' ? "pageAnimate" : "pageInitial"}
               animate="pageAnimate"
-              exit="pageExit"
+              exit={pathname == '/' ? "pageAnimate" : "pageExit"}
               variants={pageTransitionVariants}
             >
               <Component {...pageProps} />

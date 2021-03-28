@@ -35,4 +35,10 @@ a {
     color: inherit;
     text-decoration: none;
 }
+
+::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    height: 0;
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
 `

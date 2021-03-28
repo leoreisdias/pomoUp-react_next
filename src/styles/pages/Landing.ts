@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const LandingWrapper = styled.div`
-background: var(--background-dark);
+background: ${props => props.theme.colors.backgrounddark};
 position: fixed;
 top: 0;
 bottom: 0;

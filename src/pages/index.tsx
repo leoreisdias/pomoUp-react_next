@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import Head from 'next/head';
-
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import { Context } from 'node:vm';
-import { useState } from 'react';
-import { useProfile } from '../contexts/ProfileContext';
+
 import Lottie from 'react-lottie-player'
+
+import { useProfile } from '../contexts/ProfileContext';
 
 import { LandingWrapper, LandingContainer } from '../styles/pages/Landing'
 
