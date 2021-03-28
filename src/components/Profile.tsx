@@ -2,14 +2,14 @@ import React from 'react';
 import { useChallenges } from '../contexts/ChallengesContext';
 import { useProfile } from '../contexts/ProfileContext';
 
-import stylesProfile from '../styles/components/Profile.module.css';
+import { ProfileContainer } from '../styles/components/Profile';
 
 const Profile: React.FC = (props) => {
   const { level } = useChallenges();
   const { name, avatar } = useProfile();
 
   return (
-    <div className={stylesProfile.profileContainer}>
+    <ProfileContainer>
       <img src={String(avatar)} alt=" Avatar" />
       <div>
         <strong>{name}</strong>
@@ -18,7 +18,7 @@ const Profile: React.FC = (props) => {
                     Level {level}
         </p>
       </div>
-    </div>
+    </ProfileContainer>
   )
 }
 

@@ -1,18 +1,18 @@
 import React from 'react';
 import SideBar from './SideBar';
 
-import stylesMain from '../styles/components/MainLayout.module.css';
+import { MainContainer } from '../styles/components/MainLayout';
 
 const MainLayout: React.FC = ({ children }) => {
 
   return (
-    <div className={stylesMain.mainContainer}>
+    <MainContainer>
       <SideBar />
 
-      <article className={stylesMain.content}>
+      <article>
         {children}
       </article>
-    </div>
+    </MainContainer>
   );
 }
 

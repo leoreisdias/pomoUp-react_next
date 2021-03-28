@@ -4,15 +4,10 @@ import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ProfileProvider } from '../contexts/ProfileContext';
 import { useRouter } from 'next/router';
-import stylesLogin from '../../styles/pages/Home.module.css';
-import stylesProfile from '../styles/components/Profile.module.css';
-import stylesRank from '../styles/pages/Ranking.module.css';
-import stylesSidebar from '../styles/components/Siderbar.module.css';
-import stylesBoard from '../styles/components/UserBoardCard.module.css';
-import stylesMain from '../styles/components/MainLayout.module.css';
-import stylesCount from '../styles/components/Countdown.module.css';
-import stylesChallenge from '../styles/components/CompletedChallenges.module.css';
-import stylesBox from '../styles/components/ChallengeBox.module.css';
+import { ThemeProvider } from 'styled-components';
+import theme from '../styles/theme';
+
+import GlobalStyle from '../styles/global';
 
 const pageTransitionVariants = {
   pageInitial: {
@@ -40,19 +35,22 @@ function MyApp({ Component, pageProps, router }) {
 
   return (
     <ProfileProvider >
-      <MainLayout>
-        <AnimatePresence exitBeforeEnter>
-          <motion.div
-            key={router.route}
-            initial={pathname == '/' ? "pageAnimate" : "pageInitial"}
-            animate="pageAnimate"
-            exit="pageExit"
-            variants={pageTransitionVariants}
-          >
-            <Component {...pageProps} />
-          </motion.div>
-        </AnimatePresence>
-      </MainLayout>
+      <ThemeProvider theme={theme}>
+        <MainLayout>
+          <AnimatePresence exitBeforeEnter>
+            <motion.div
+              key={router.route}
+              initial={pathname == '/' ? "pageAnimate" : "pageInitial"}
+              animate="pageAnimate"
+              exit="pageExit"
+              variants={pageTransitionVariants}
+            >
+              <Component {...pageProps} />
+              <GlobalStyle />
+            </motion.div>
+          </AnimatePresence>
+        </MainLayout>
+      </ThemeProvider>
     </ProfileProvider >
 
   )
