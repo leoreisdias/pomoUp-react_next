@@ -2,7 +2,7 @@ import React from 'react';
 import Lottie from 'react-lottie-player';
 import completed from '../lotties/completed.json';
 
-import styles from '../styles/components/Countdown.module.css';
+import stylesCount from '../styles/components/Countdown.module.css';
 import { useCountdown } from '../contexts/CountdownContext';
 import { motion } from 'framer-motion';
 
@@ -15,7 +15,7 @@ const Countdown: React.FC = () => {
 
   return (
     <div>
-      <div className={styles.countdownContainer}>
+      <div className={stylesCount.countdownContainer}>
         <div>
           <span>{minuteLeft}</span>
           <span>{minutoRight}</span>
@@ -30,7 +30,7 @@ const Countdown: React.FC = () => {
       { hasFinished && !isInPauseTime ? (
         <motion.button
           disabled
-          className={styles.countdownButton}
+          className={stylesCount.countdownButton}
           whileHover={{
             scale: [1, 1.5, 1.2],
             rotate: [0, 10, -10, 0],
@@ -55,7 +55,7 @@ const Countdown: React.FC = () => {
           {isActive ? (
             <motion.button
               type="button"
-              className={`${styles.countdownButton} ${styles.countdownButtonActive}`}
+              className={`${stylesCount.countdownButton} ${stylesCount.countdownButtonActive}`}
               onClick={resetCountdown}
               whileHover={{
                 scale: [1, 1.5, 1.2],
@@ -71,7 +71,7 @@ const Countdown: React.FC = () => {
           ) : (
             <motion.button
               type="button"
-              className={styles.countdownButton}
+              className={stylesCount.countdownButton}
               onClick={startCountdown}
               whileHover={{
                 scale: [1, 1.5, 1.2],

@@ -28,6 +28,11 @@
     margin-top: 2rem;
 }
 
+@media(max-height: 800px){
+  .container section{
+    margin-top: 4rem;
+  }
+}
 
 @media(max-width: 720px){
     .container section{

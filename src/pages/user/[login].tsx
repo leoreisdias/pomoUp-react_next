@@ -8,7 +8,7 @@ import CompletedChallenges from '../../components/CompletedChallenges';
 import ChallengeBox from '../../components/ChallengeBox';
 
 
-import styles from '../../styles/pages/Home.module.css';
+import stylesLogin from '../../styles/pages/Home.module.css';
 
 import { CountdownProvider } from '../../contexts/CountdownContext';
 import { GetServerSideProps } from 'next';
@@ -38,7 +38,7 @@ export default function Home(props: HomeProps) {
 
   return (
 
-    <main className={styles.wrapper}>
+    <main className={stylesLogin.wrapper}>
       <Head>
         <title>Inicio | Pomo Up</title>
       </Head>
@@ -48,7 +48,7 @@ export default function Home(props: HomeProps) {
         currentExperience={props.currentExperience}
         challengesCompleted={props.challengesCompleted}
       >
-        <div className={styles.container}>
+        <div className={stylesLogin.container}>
 
           <ExperienceBar />
 
