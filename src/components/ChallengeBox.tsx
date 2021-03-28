@@ -1,7 +1,7 @@
 import React from 'react';
 import Lottie from 'react-lottie-player';
 
-import styles from '../styles/components/ChallengeBox.module.css';
+import stylesBox from '../styles/components/ChallengeBox.module.css';
 
 import levelUp from '../lotties/level-up.json';
 
@@ -21,9 +21,9 @@ const ChallengeBox: React.FC = () => {
   }
 
   return (
-    <div className={styles.challengeBoxContainer}>
+    <div className={stylesBox.challengeBoxContainer}>
       { activeChallenge ? (
-        <div className={styles.challengeActive}>
+        <div className={stylesBox.challengeActive}>
           <header>Ganhe {activeChallenge.amount} xp</header>
 
           <main>
@@ -35,13 +35,13 @@ const ChallengeBox: React.FC = () => {
           <footer>
             <button
               type="button"
-              className={styles.challengeFailedButton}
+              className={stylesBox.challengeFailedButton}
               onClick={handleChallengeFailed}
             >
               Falhei</button>
             <button
               type="button"
-              className={styles.challengeSucceededButton}
+              className={stylesBox.challengeSucceededButton}
               onClick={handleChallengeSucceeded}
             >
               Completei</button>
@@ -49,7 +49,7 @@ const ChallengeBox: React.FC = () => {
 
         </div>
       ) : (
-        <div className={styles.challengeNotActive}>
+        <div className={stylesBox.challengeNotActive}>
           <strong>Finalize um ciclo para receber um desafio</strong>
           <span>
             <Lottie
@@ -67,7 +67,7 @@ const ChallengeBox: React.FC = () => {
             hasFinished && !isInPauseTime ?
               <button
                 type="button"
-                className={styles.pauseTimeButton}
+                className={stylesBox.pauseTimeButton}
                 onClick={startPauseTime}
               >
                 Iniciar Pause Time

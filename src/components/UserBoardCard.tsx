@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import React from 'react';
 
-import styles from '../styles/components/UserBoardCard.module.css';
+import stylesBoard from '../styles/components/UserBoardCard.module.css';
 
 interface usersProps {
   name: string,
@@ -25,11 +25,11 @@ const cardVariants = {
 
 const UserBoardCard = (props: usersProps) => {
   return (
-    <motion.main className={styles.cardContainer} variants={cardVariants}>
+    <motion.main className={stylesBoard.cardContainer} variants={cardVariants}>
       <span>
         {props.position}
       </span>
-      <div className={styles.profileContainer}>
+      <div className={stylesBoard.profileContainer}>
         <img src={String(props.avatar)} alt=" Avatar" />
         <div>
           <strong>{props.name}</strong>

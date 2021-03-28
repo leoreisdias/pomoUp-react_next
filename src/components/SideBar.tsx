@@ -4,24 +4,25 @@ import { useRouter } from 'next/router'
 import { FaHome } from 'react-icons/fa';
 import { GiTrophy } from 'react-icons/gi';
 
-import styles from '../styles/components/Siderbar.module.css';
 import { motion } from 'framer-motion';
 import { useProfile } from '../contexts/ProfileContext';
+
+import stylesSidebar from '../styles/components/Siderbar.module.css';
 
 const SideBar = () => {
   const { pathname } = useRouter();
   const { login } = useProfile();
 
   return (
-    <aside className={styles.container}>
+    <aside className={stylesSidebar.container}>
       <div>
         <img src="/favicon.png" alt="" />
       </div>
-      <div className={styles.menu}>
+      <div className={stylesSidebar.menu}>
         <Link href={`/user/${login}`}>
           <span>
             {pathname.includes('/user') &&
-              <div className={styles.selectedOption}></div>
+              <div className={stylesSidebar.selectedOption}></div>
             }
             <motion.div whileHover={{ scale: 1.1 }}>
               <FaHome size={30} />
@@ -32,7 +33,7 @@ const SideBar = () => {
         <Link href="/ranking">
           <span>
             {pathname == '/ranking' &&
-              <div className={styles.selectedOption}></div>
+              <div className={stylesSidebar.selectedOption}></div>
             }
             <motion.div whileHover={{ scale: 1.1 }} >
               <GiTrophy size={30} />
