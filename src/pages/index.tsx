@@ -9,7 +9,8 @@ import { useState } from 'react';
 import { useProfile } from '../contexts/ProfileContext';
 import Lottie from 'react-lottie-player'
 
-import styles from '../styles/pages/Landing.module.css';
+import { LandingWrapper, LandingContainer } from '../styles/pages/Landing'
+
 import loadingLottie from '../lotties/loading.json';
 
 interface LandingProps {
@@ -47,11 +48,11 @@ export default function Landing(props: LandingProps) {
 
   return (
     (
-      <div className={styles.overlay}>
+      <LandingWrapper>
         <Head>
           <title>Inicio | Pomo Up</title>
         </Head>
-        <div className={styles.container}>
+        <LandingContainer>
           {
             isLoading ? (
               <span>
@@ -75,8 +76,8 @@ export default function Landing(props: LandingProps) {
                   <strong>Iniciar</strong>
                 </button>
               </>)}
-        </div>
-      </div >
+        </LandingContainer>
+      </LandingWrapper>
     )
   )
 }

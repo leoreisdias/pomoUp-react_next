@@ -1,12 +1,13 @@
 import { useChallenges } from '../contexts/ChallengesContext';
-import styles from '../styles/components/LevelUpModal.module.css';
+
+import { LevelUpModalWrapper, LevelUpModalContainer } from '../styles/components/LevelUpModel'
 
 export function LevelUpModal() {
   const { level, closeLevelUpModal } = useChallenges();
 
   return (
-    <div className={styles.overlay}>
-      <div className={styles.container}>
+    <LevelUpModalWrapper>
+      <LevelUpModalContainer>
         <header>{level}</header>
 
         <strong>Parabéns!</strong>
@@ -16,7 +17,7 @@ export function LevelUpModal() {
         <button type="button" onClick={closeLevelUpModal}>
           <img src="/icons/close.svg" alt="Fechar Modal" />
         </button>
-      </div>
-    </div>
+      </LevelUpModalContainer>
+    </LevelUpModalWrapper>
   )
 }

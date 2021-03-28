@@ -1,16 +1,18 @@
-.cardContainer{
-  display: grid;
+import { motion } from "framer-motion";
+import styled from "styled-components";
 
-  grid-template-columns: 6rem 2fr 1fr 1fr;
-  height: 6rem;
-  border-radius: 20px;
-  background: var(--blue);
+export const CardContainer = styled(motion.main)`
+display: grid;
 
-  margin-bottom: 1rem;
-  color: var(--white);
-}
+grid-template-columns: 6rem 2fr 1fr 1fr;
+height: 6rem;
+border-radius: 20px;
+background: var(--blue);
 
-.cardContainer > span{
+margin-bottom: 1rem;
+color: var(--white);
+
+& > span{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,24 +25,35 @@
   background: var(--blue);
 }
 
-.cardContainer > span > strong{
+& > span > strong{
   font-weight: 400;
 }
 
-.profileContainer{
+& strong{
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
 
-.profileContainer img{
+& strong > span{
+  margin-right: 0.2rem;
+}
+
+`;
+
+export const ProfileContainer = styled.div`
+display: flex;
+justify-content: flex-start;
+align-items: center;
+
+& img{
   width: 4rem;
   height: 4rem;
 
   border-radius: 50%;
 }
 
-.profileContainer > div{
+& > div{
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -49,24 +62,15 @@
   height: 100%;
 }
 
-.profileContainer > div > span{
+& > div > span{
   display: flex;
   align-items: center;
   height: 1rem;
 }
 
-.profileContainer > div span > img{
+& > div span > img{
   width: 0.7rem;
   margin-right: 0.4rem;
 }
 
-.cardContainer strong{
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.cardContainer strong > span{
-  margin-right: 0.2rem;
-}
-
+`;

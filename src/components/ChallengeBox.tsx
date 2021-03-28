@@ -1,12 +1,13 @@
 import React from 'react';
 import Lottie from 'react-lottie-player';
 
-import stylesBox from '../styles/components/ChallengeBox.module.css';
 
 import levelUp from '../lotties/level-up.json';
 
 import { useChallenges } from '../contexts/ChallengesContext';
 import { useCountdown } from '../contexts/CountdownContext';
+
+import { ChallengeActive, ChallengeNotActive, ChallengeButton, ChallengeBoxContainer } from '../styles/components/ChallengeBox'
 
 const ChallengeBox: React.FC = () => {
   const { activeChallenge, resetChallenge, completeChallenge } = useChallenges();
@@ -21,9 +22,9 @@ const ChallengeBox: React.FC = () => {
   }
 
   return (
-    <div className={stylesBox.challengeBoxContainer}>
+    <ChallengeBoxContainer>
       { activeChallenge ? (
-        <div className={stylesBox.challengeActive}>
+        <ChallengeActive>
           <header>Ganhe {activeChallenge.amount} xp</header>
 
           <main>
@@ -33,23 +34,23 @@ const ChallengeBox: React.FC = () => {
           </main>
 
           <footer>
-            <button
+            <ChallengeButton
+              color="fail"
               type="button"
-              className={stylesBox.challengeFailedButton}
               onClick={handleChallengeFailed}
             >
-              Falhei</button>
-            <button
+              Falhei</ChallengeButton>
+            <ChallengeButton
+              color="succeed"
               type="button"
-              className={stylesBox.challengeSucceededButton}
               onClick={handleChallengeSucceeded}
             >
-              Completei</button>
+              Completei</ChallengeButton>
           </footer>
 
-        </div>
+        </ChallengeActive>
       ) : (
-        <div className={stylesBox.challengeNotActive}>
+        <ChallengeNotActive>
           <strong>Finalize um ciclo para receber um desafio</strong>
           <span>
             <Lottie
@@ -65,18 +66,18 @@ const ChallengeBox: React.FC = () => {
           </p>
           {
             hasFinished && !isInPauseTime ?
-              <button
+              <ChallengeButton
+                color="succeed"
                 type="button"
-                className={stylesBox.pauseTimeButton}
                 onClick={startPauseTime}
               >
                 Iniciar Pause Time
-          </button> : ''
+          </ChallengeButton> : ''
           }
 
-        </div>
+        </ChallengeNotActive>
       )}
-    </div>
+    </ChallengeBoxContainer>
   );
 }
 
