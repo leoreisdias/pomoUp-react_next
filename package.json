@@ -22,6 +22,7 @@
     "react-dom": "17.0.1",
     "react-icons": "^4.2.0",
     "react-lottie-player": "^1.2.0",
+    "styled-components": "^5.2.1",
     "typescript": "^4.2.2"
   },
   "devDependencies": {
@@ -29,6 +30,7 @@
     "@commitlint/config-conventional": "^12.0.1",
     "@types/js-cookie": "^2.2.6",
     "@types/mongodb": "^3.6.10",
+    "@types/styled-components": "^5.1.9",
     "cz-conventional-changelog": "3.3.0",
     "husky": "^5.1.3"
   },
