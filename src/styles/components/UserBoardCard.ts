@@ -7,10 +7,10 @@ display: grid;
 grid-template-columns: 6rem 2fr 1fr 1fr;
 height: 6rem;
 border-radius: 20px;
-background: var(--blue);
+background: ${props => props.theme.colors.blue};
 
 margin-bottom: 1rem;
-color: var(--white);
+color: ${props => props.theme.colors.white};
 
 & > span{
   display: flex;
@@ -20,9 +20,9 @@ color: var(--white);
 
   font-size: 2rem;
 
-  border-right: 2px solid var(--background);
+  border-right: 2px solid ${props => props.theme.colors.background};
   border-radius: 10%;
-  background: var(--blue);
+  background:  ${props => props.theme.colors.blue};
 }
 
 & > span > strong{

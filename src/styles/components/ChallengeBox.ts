@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ChallengeBoxContainer = styled.div`
 height: 100%;
 
-background: var(--white);
+background:  ${props => props.theme.colors.white};
 border-radius: 5px;
 box-shadow: 0 0 60px rgba(0,0,0,0.05);
 padding: 1.5rem 2rem;
@@ -55,8 +55,8 @@ justify-content: space-evenly;
 
   padding: 1rem;
 
-  color: var(--white);
-  background: var(--green);
+  color: ${props => props.theme.colors.white};
+  background: ${props => props.theme.colors.green};
 
 
   font-size: 1rem;
@@ -77,11 +77,11 @@ display: flex;
 flex-direction: column;
 
 & header{
-  color: var(--blue);
+  color: ${props => props.theme.colors.blue};
   font-weight: 600;
   font-size: 1.25rem;
   padding: 0 2rem 1.5rem;
-  border-bottom: 1px solid var(--gray-line);
+  border-bottom: 1px solid ${props => props.theme.colors.grayline};
 }
 
 & main{
@@ -95,7 +95,7 @@ flex-direction: column;
 & main strong{
   font-weight: 600;
   font-size: 2rem;
-  color: var(--title);
+  color: ${props => props.theme.colors.title};
   margin: 1.5rem 0 1rem;
 }
 
@@ -120,7 +120,7 @@ justify-content: center;
 border: 0;
 border-radius: 5px;
 
-color: var(--white);
+color: ${props => props.theme.colors.white};
 background: ${props => props.color == 'fail' ? props.theme.colors.red : props.theme.colors.green};
 
 font-size: 1rem;
