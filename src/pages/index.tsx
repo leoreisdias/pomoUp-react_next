@@ -35,7 +35,7 @@ export default function Landing(props: LandingProps) {
 
       await handleLoginAndUserInfo(response.data);
 
-      push(`/user/${login}`);
+      await push(`/user/${login}`);
 
       setIsLoading(false);
     } catch {

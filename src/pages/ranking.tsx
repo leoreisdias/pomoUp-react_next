@@ -5,7 +5,7 @@ import Lottie from 'react-lottie-player'
 import { motion } from 'framer-motion';
 import UserBoardCard from '../components/UserBoardCard';
 
-import stylesRank from '../styles/pages/Ranking.module.css';
+import { RankingWrapper, LoadingContainer, RankingContainer } from '../styles/pages/Ranking'
 
 import loadingLottie from '../lotties/loading.json';
 
@@ -35,7 +35,7 @@ const Ranking = (props: usersProps) => {
 
   if (loading) {
     return (
-      <div className={stylesRank.loadingContainer}>
+      <LoadingContainer>
         <Lottie
           loop={true}
           animationData={loadingLottie}
@@ -43,17 +43,17 @@ const Ranking = (props: usersProps) => {
           style={{ width: 400, height: 400 }}
           speed={1}
         />
-      </div>
+      </LoadingContainer>
     )
   }
 
   return (
 
-    <main className={stylesRank.wrapper}>
+    <RankingWrapper>
       <Head>
         <title>Inicio | Pomo Up</title>
       </Head>
-      <div className={stylesRank.container}>
+      <RankingContainer>
         <header>
           <h2>Rank Pomo-Up</h2>
         </header>
@@ -84,8 +84,8 @@ const Ranking = (props: usersProps) => {
           }
 
         </motion.section>
-      </div>
-    </main>
+      </RankingContainer>
+    </RankingWrapper>
 
   );
 }

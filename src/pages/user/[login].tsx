@@ -6,16 +6,13 @@ import Countdown from '../../components/Countdown';
 import ExperienceBar from '../../components/ExperienceBar';
 import CompletedChallenges from '../../components/CompletedChallenges';
 import ChallengeBox from '../../components/ChallengeBox';
-
-
-import stylesLogin from '../../styles/pages/Home.module.css';
-
 import { CountdownProvider } from '../../contexts/CountdownContext';
 import { GetServerSideProps } from 'next';
 import { ChallengesProvider } from '../../contexts/ChallengesContext';
 import { Context } from 'node:vm';
 import { useProfile } from '../../contexts/ProfileContext';
 
+import { HomeWrapper, HomeContainer } from '../../styles/pages/Home'
 
 interface HomeProps {
   level: number;
@@ -38,7 +35,7 @@ export default function Home(props: HomeProps) {
 
   return (
 
-    <main className={stylesLogin.wrapper}>
+    <HomeWrapper>
       <Head>
         <title>Inicio | Pomo Up</title>
       </Head>
@@ -48,7 +45,7 @@ export default function Home(props: HomeProps) {
         currentExperience={props.currentExperience}
         challengesCompleted={props.challengesCompleted}
       >
-        <div className={stylesLogin.container}>
+        <HomeContainer>
 
           <ExperienceBar />
 
@@ -66,9 +63,9 @@ export default function Home(props: HomeProps) {
             </section>
           </CountdownProvider>
 
-        </div>
+        </HomeContainer>
       </ChallengesProvider>
-    </main>
+    </HomeWrapper>
   );
 }
 

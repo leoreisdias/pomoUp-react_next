@@ -1,4 +1,3 @@
-import '../styles/global.css';
 import MainLayout from '../components/MainLayout';
 import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';

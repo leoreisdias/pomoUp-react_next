@@ -9,7 +9,7 @@ align-items: center;
 
 height: 100vh;
 width: 5rem;
-background: #5965E0;
+background: ${props => props.theme.colors.blue};
 
 & > div:first-child{
   display: flex;
@@ -39,7 +39,7 @@ export const Menu = styled.div`
 display: flex;
 flex-direction: column;
 
-color: white;
+color: ${props => props.theme.colors.white};
 
 & span{
   width: 5rem;
@@ -83,7 +83,7 @@ export const SelectedOption = styled.div`
 width: 5px;
 height: 56px;
 margin: 0.5rem 0;
-background-color: var(--white);
+background-color: ${props => props.theme.colors.white};
 border-radius: 0 5px 5px 0;
 
 @media(max-width: 600px){
