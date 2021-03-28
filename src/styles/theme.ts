@@ -15,7 +15,8 @@ const theme = {
     darklight: '#414991',
     backgrounddark: '#131215',
     backgrounddarklight: '#212025',
-  }
+  },
+  active: true
 }
 
 export default theme;

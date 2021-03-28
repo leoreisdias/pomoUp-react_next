@@ -2,10 +2,9 @@ import React from 'react';
 import Lottie from 'react-lottie-player';
 import completed from '../lotties/completed.json';
 
-import stylesCount from '../styles/components/Countdown.module.css';
 import { useCountdown } from '../contexts/CountdownContext';
-import { motion } from 'framer-motion';
 
+import { CountdownContainer, CountdownButton } from '../styles/components/Countdown'
 
 const Countdown: React.FC = () => {
   const { minutes, seconds, hasFinished, isActive, startCountdown, resetCountdown, isInPauseTime } = useCountdown();
@@ -14,8 +13,8 @@ const Countdown: React.FC = () => {
   const [secondLeft, secondRight] = String(seconds).padStart(2, '0').split('');
 
   return (
-    <div>
-      <div className={stylesCount.countdownContainer}>
+    <>
+      <CountdownContainer>
         <div>
           <span>{minuteLeft}</span>
           <span>{minutoRight}</span>
@@ -25,15 +24,14 @@ const Countdown: React.FC = () => {
           <span>{secondLeft}</span>
           <span>{secondRight}</span>
         </div>
-      </div>
+      </CountdownContainer>
 
       { hasFinished && !isInPauseTime ? (
-        <motion.button
+        <CountdownButton
           disabled
-          className={stylesCount.countdownButton}
           whileHover={{
-            scale: [1, 1.5, 1.2],
-            rotate: [0, 10, -10, 0],
+            scale: [1, 1.2, 1.1],
+            rotate: [0, 2, -2, 0],
             transition: {
               duration: .2
             }
@@ -49,17 +47,17 @@ const Countdown: React.FC = () => {
               style={{ width: 100, height: 100 }}
             />
           </span>
-        </motion.button>
+        </CountdownButton>
       ) : (
         <>
           {isActive ? (
-            <motion.button
+            <CountdownButton
               type="button"
-              className={`${stylesCount.countdownButton} ${stylesCount.countdownButtonActive}`}
+              active={true}
               onClick={resetCountdown}
               whileHover={{
-                scale: [1, 1.5, 1.2],
-                rotate: [0, 10, -10, 0],
+                scale: [1, 1.2, 1.1],
+                rotate: [0, 2, -2, 0],
                 transition: {
                   duration: .2
                 }
@@ -67,15 +65,13 @@ const Countdown: React.FC = () => {
               whileTap={{ scale: 0.9 }}
             >
               Abandonar Ciclo
-            </motion.button>
+            </CountdownButton>
           ) : (
-            <motion.button
-              type="button"
-              className={stylesCount.countdownButton}
+            <CountdownButton
               onClick={startCountdown}
               whileHover={{
-                scale: [1, 1.5, 1.2],
-                rotate: [0, 10, -10, 0],
+                scale: [1, 1.2, 1.1],
+                rotate: [0, 2, -2, 0],
                 transition: {
                   duration: .2
                 }
@@ -83,13 +79,13 @@ const Countdown: React.FC = () => {
               whileTap={{ scale: 0.9 }}
             >
               Iniciar um Ciclo
-            </motion.button>
+            </CountdownButton>
           )}
         </>
       )}
 
 
-    </div>
+    </>
   );
 }
 
