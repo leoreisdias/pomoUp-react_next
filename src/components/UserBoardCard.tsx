@@ -1,7 +1,6 @@
-import { motion } from 'framer-motion';
 import React from 'react';
 
-import stylesBoard from '../styles/components/UserBoardCard.module.css';
+import { CardContainer, ProfileContainer } from '../styles/components/UserBoardCard';
 
 interface usersProps {
   name: string,
@@ -25,11 +24,11 @@ const cardVariants = {
 
 const UserBoardCard = (props: usersProps) => {
   return (
-    <motion.main className={stylesBoard.cardContainer} variants={cardVariants}>
+    <CardContainer variants={cardVariants}>
       <span>
         {props.position}
       </span>
-      <div className={stylesBoard.profileContainer}>
+      <ProfileContainer>
         <img src={String(props.avatar)} alt=" Avatar" />
         <div>
           <strong>{props.name}</strong>
@@ -38,12 +37,12 @@ const UserBoardCard = (props: usersProps) => {
                     Level {props.level}
           </span>
         </div>
-      </div>
+      </ProfileContainer>
 
       <strong><span>{props.challenges} </span> completados</strong>
       <strong><span>{props.exp}</span> xp</strong>
 
-    </motion.main>
+    </CardContainer>
   );
 }
 

@@ -1,16 +1,16 @@
 import React from 'react';
 import { useChallenges } from '../contexts/ChallengesContext';
 
-import stylesChallenge from '../styles/components/CompletedChallenges.module.css';
+import { CompletedChallengesContainer } from '../styles/components/CompletedChallenges'
 
 const CompletedChallenges: React.FC = () => {
   const { challengesCompleted } = useChallenges();
 
   return (
-    <div className={stylesChallenge.completedChallengesContainer}>
+    <CompletedChallengesContainer>
       <span>Desafios completos</span>
       <span>{challengesCompleted}</span>
-    </div>
+    </CompletedChallengesContainer>
   );
 }
 

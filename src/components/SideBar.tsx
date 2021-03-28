@@ -7,22 +7,22 @@ import { GiTrophy } from 'react-icons/gi';
 import { motion } from 'framer-motion';
 import { useProfile } from '../contexts/ProfileContext';
 
-import stylesSidebar from '../styles/components/Siderbar.module.css';
+import { Menu, SelectedOption, SidebarContainer } from '../styles/components/Sidebar'
 
 const SideBar = () => {
   const { pathname } = useRouter();
   const { login } = useProfile();
 
   return (
-    <aside className={stylesSidebar.container}>
+    <SidebarContainer>
       <div>
         <img src="/favicon.png" alt="" />
       </div>
-      <div className={stylesSidebar.menu}>
+      <Menu>
         <Link href={`/user/${login}`}>
           <span>
             {pathname.includes('/user') &&
-              <div className={stylesSidebar.selectedOption}></div>
+              <SelectedOption></SelectedOption>
             }
             <motion.div whileHover={{ scale: 1.1 }}>
               <FaHome size={30} />
@@ -33,7 +33,7 @@ const SideBar = () => {
         <Link href="/ranking">
           <span>
             {pathname == '/ranking' &&
-              <div className={stylesSidebar.selectedOption}></div>
+              <SelectedOption></SelectedOption>
             }
             <motion.div whileHover={{ scale: 1.1 }} >
               <GiTrophy size={30} />
@@ -41,8 +41,8 @@ const SideBar = () => {
             </motion.div>
           </span>
         </Link>
-      </div>
-    </aside>
+      </Menu>
+    </SidebarContainer>
   );
 }
 
