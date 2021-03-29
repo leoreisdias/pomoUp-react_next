@@ -39,6 +39,25 @@ color: ${props => props.theme.colors.white};
   margin-right: 0.2rem;
 }
 
+@media(max-width:500px){
+  grid-template-columns: 3rem 2fr 1fr 1fr;
+  height: 4.8rem;
+
+  & strong{
+    font-size: 0.65rem
+  }
+
+  & > span{
+    width: 2rem;
+    font-size: 1rem
+  }
+
+  & strong{
+  justify-content: center;
+}
+
+}
+
 `;
 
 export const ProfileContainer = styled.div`
@@ -73,4 +92,25 @@ align-items: center;
   margin-right: 0.4rem;
 }
 
+@media(max-width: 500px){
+  font-size: 0.65rem;
+
+  & img{
+    width: 2.5rem;
+    height: 2.5rem
+  }
+
+  & > div{
+    justify-content: center;
+    margin-left: 0.2rem
+  }
+
+  & > div > span{
+    margin-top: 0.5rem
+  }
+
+  & > div span > img{
+  width: 0.5rem;
+}
+}
 `;

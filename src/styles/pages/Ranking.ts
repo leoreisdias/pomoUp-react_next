@@ -37,4 +37,11 @@ flex-direction: column;
   margin-bottom: 1rem;
 }
 
+@media(max-width: 500px){
+
+  & section div strong{
+    font-size: 0.65rem;
+  }
+}
+
 `;
