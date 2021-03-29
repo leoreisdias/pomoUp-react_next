@@ -35,14 +35,12 @@ export default function Landing(props: LandingProps) {
 
       await handleLoginAndUserInfo(response.data);
 
-      await push(`/user/${login}`);
+      push(`/user/${login}`);
 
-      setIsLoading(false);
     } catch {
       setIsWrongUsername(true);
       setLogin('');
 
-      setIsLoading(false);
     }
   }
 

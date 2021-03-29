@@ -64,6 +64,16 @@ export function CountdownProvider({ children }: CountdownProviderProps) {
       setHasFinished(true);
       setIsActive(false);
 
+      let message = isInPauseTime ? "Fim do Descanso em, bora pra mais" : "Hora de Descansar porque ninguém é de ferro"
+
+      new Audio('/notification.mp3').play();
+
+      if (Notification.permission === 'granted') {
+        new Notification('Olá olá, atenção 🎉', {
+          body: message
+        })
+      }
+
       isInPauseTime && resetCountdown();
     }
   }, [isActive, time])
