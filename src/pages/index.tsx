@@ -39,8 +39,8 @@ export default function Landing(props: LandingProps) {
 
     } catch {
       setIsWrongUsername(true);
+      setIsLoading(false);
       setLogin('');
-
     }
   }
 
