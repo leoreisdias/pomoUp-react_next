@@ -33,6 +33,9 @@ export const ProfileProvider = ({ children }: ProfileProviderProps) => {
 
   function handleLoggout() {
     Cookies.remove('login');
+    Cookies.remove('level');
+    Cookies.remove('currentExperience');
+    Cookies.remove('challengesCompleted');
     setLogin('');
   }
 
