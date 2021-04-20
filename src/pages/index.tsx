@@ -49,6 +49,20 @@ export default function Landing(props: LandingProps) {
       <LandingWrapper>
         <Head>
           <title>Inicio | Pomo Up</title>
+          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+          <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+          <meta name="description" content="Description" />
+          <meta name="keywords" content="Keywords" />
+          <meta name="theme-color" content="red" />
+          <meta name="mobile-web-app-capable" content="yes" />
+          <meta name="nightmode" content="enable/disable" />
+          <meta name="screen-orientation" content="portrait" />
+          <meta name="theme-color" content="#5965E0" />
+          <link rel="manifest" href="/manifest.json" />
+          <link href='/icons/favicon-16x16.png' rel='icon' type='image/png' sizes='16x16' />
+          <link href='/icons/favicon-32x32.png' rel='icon' type='image/png' sizes='32x32' />
+          <link rel="/icons/apple-touch-icon" href="/apple-icon.png"></link>
+          <link rel="shortcut icon" href="/favicon.png" type="image/png" />
         </Head>
         <LandingContainer>
           {

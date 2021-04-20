@@ -1,4 +1,6 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
+import { Box } from "../components/TopRankCard";
 
 export const LoadingContainer = styled.div`
 height: 100vh;
@@ -20,7 +22,7 @@ overflow: auto;
 export const RankingContainer = styled.div`
 height: 100vh;
 width: 100%;
-max-width: 992px;
+max-width: 1100px;
 padding: 2.5rem 2rem;
 
 display: flex;
@@ -42,6 +44,30 @@ flex-direction: column;
   & section div strong{
     font-size: 0.65rem;
   }
+}
+`;
+
+export const TopRankContainer = styled(motion.div)`
+  margin-top: 2rem;
+  display: grid;
+  grid-template-areas: 'second first third';
+
+  & ${Box}:nth-child(1){
+    grid-area: first;
+    bottom: 2rem;
+    left: -5rem;
+  }
+  &  ${Box}:nth-child(2){
+    grid-area: second;
+    left: 0;
+  }
+  & ${Box}:nth-child(3){
+    grid-area: third;
+    left: -10rem;
+  }
+
+@media(max-width: 800px){
+  display: none;
 }
 
 `;

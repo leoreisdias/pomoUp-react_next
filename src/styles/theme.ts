@@ -1,7 +1,7 @@
 const theme = {
   colors: {
     white: '#fff',
-    background: '#f2f3f5',
+    background: '#E2E3E7',
     grayline: '#dcdde0',
     text: '#666666',
     texthighlight: '#b3b9ff',
@@ -15,6 +15,12 @@ const theme = {
     darklight: '#414991',
     backgrounddark: '#131215',
     backgrounddarklight: '#212025',
+    position_1x: '#ffbc00',
+    position_1y: '#ff0058',
+    position_2x: '#03a9f4',
+    position_2y: '#ff0058',
+    position_3x: '#4dff03',
+    position_3y: '#00d0ff',
   },
 }
 

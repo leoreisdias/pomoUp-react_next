@@ -6,3 +6,19 @@ module.exports = withPWA({
   },
   future: { webpack5: true, },
 })
+
+module.exports = {
+  async rewrites(){
+		return [
+			{
+				source: '/:path*',
+				destination: '/:path*',
+			},
+			{
+				source: '/:path*',
+				destination: '/user/:path*',
+			},
+
+		]
+	},
+}
