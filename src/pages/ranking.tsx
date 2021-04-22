@@ -70,20 +70,15 @@ const Ranking = (props: usersProps) => {
             }
           }
         }}>
-        <TopRankCard  name={users[0].name}
-        avatar_url={users[0].avatar}
-        github_url={`https://github.com/${users[0].login}`}
-        position={1} />
 
-        <TopRankCard  name={users[1].name}
-        avatar_url={users[1].avatar}
-        github_url={`https://github.com/${users[1].login}`}
-        position={2} />
-
-        <TopRankCard  name={users[2].name}
-        avatar_url={users[2].avatar}
-        github_url={`https://github.com/${users[2].login}`}
-        position={3} />
+        {users.slice(0,3).map((user, index) => {
+          return (
+            <TopRankCard key={user._id} name={user.name}
+              avatar_url={user.avatar}
+              github_url={`https://github.com/${user.login}`}
+              position={++index} />
+          )
+        })}
         </TopRankContainer>
       }
       <header>
