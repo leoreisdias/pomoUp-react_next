@@ -21,7 +21,7 @@ interface usersProps {
   challengesCompleted: number
 }
 
-const Ranking = (props: usersProps) => {
+const Ranking = () => {
   const [users, setUsers] = useState<usersProps[]>([]);
   const [loading, setLoading] = useState(true);
 
