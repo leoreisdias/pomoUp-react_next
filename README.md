@@ -3,8 +3,10 @@
 **Move.it** or **Pomo Up**, is an open source project developed during Next Level Week # 4 from the [Rocketseat](https://github.com/rocketseat) class, by the Rocketseat CTO, [Diego Fernandes](https://github.com/diego3g).
 
 <p align="center">
+  
 🚀 [My LogBook](https://www.notion.so/Development-7e867a3173424b5f8bb9d93f99659e39) 🚀 <br />
 `Visit My LogBook for the full documentation about these and others technolgies I have been learning`
+
 </p>
 
 ---
