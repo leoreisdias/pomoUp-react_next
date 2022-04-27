@@ -80,7 +80,7 @@ export default function Landing(props: LandingProps) {
               (<>
                 <header>-</header>
 
-                <input type="text" value={login} onChange={event => setLogin(event.target.value)} placeholder={isWrongUsername ? 'Username Inexistente' : 'Github Username'} />
+                <input type="text" value={login} onChange={event => setLogin(event.target.value)} placeholder={isWrongUsername ? 'Username Inexistente!' : 'Github Username'} />
                 {isWrongUsername && <small>Username Inválido!</small>}
 
                 <button type="button" onClick={handleSubmit}>
